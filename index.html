@@ -1,0 +1,815 @@
+<!DOCTYPE html>
+<html lang="es-MX">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Adiós Gluten · Maria Aguero</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+<script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+<style>
+  :root {
+    --wa-green: #00A884;
+    --wa-green-dark: #008069;
+    --wa-green-darker: #005c4b;
+    --wa-bg: #EFEAE2;
+    --wa-bg-doodle: #d9d2c5;
+    --wa-bubble-in: #ffffff;
+    --wa-bubble-out: #D9FDD3;
+    --wa-text: #111B21;
+    --wa-text-soft: #3b4a54;
+    --wa-text-mute: #667781;
+    --wa-time: #667781;
+    --wa-read: #53BDEB;
+    --wa-link: #027EB5;
+    --green-cta: #1FCB4F;
+    --green-cta-bright: #2EE060;
+    --warn: #cc0000;
+    --warn-bg: #cc0000;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; -webkit-font-smoothing: antialiased; }
+  html, body {
+    background: #d9d2c5;
+    color: var(--wa-text);
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  }
+
+  body {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+  }
+
+  .page {
+    width: 100%;
+    max-width: 440px;
+    min-height: 100vh;
+    background-color: var(--wa-bg);
+    background-image: url("https://minioback.lavishcreative.com/typebot/public/workspaces/cm4oe1xs10000c353fx12er63/typebots/cm6z2ws9u000br1thfd47p8m1/background?v=1739198632301");
+    background-repeat: repeat;
+    background-size: 360px auto;
+    position: relative;
+    overflow: hidden;
+  }
+
+  @media (min-width: 768px) {
+    .page {
+      box-shadow: 0 30px 80px rgba(0,0,0,0.3);
+      margin: 24px 0;
+      min-height: calc(100vh - 48px);
+    }
+  }
+
+  /* ---------- TOP WARNING (sticky-feeling top bar) ---------- */
+  .warning {
+    background: var(--warn);
+    color: white;
+    padding: 8px 16px;
+    text-align: center;
+    font-size: 12.5px;
+    font-weight: 700;
+    letter-spacing: -0.005em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+    line-height: 1.2;
+  }
+  .warning-icon {
+    font-size: 13px;
+  }
+  .warning b {
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    font-size: 11px;
+    background: rgba(255,255,255,0.18);
+    padding: 1px 6px;
+    border-radius: 4px;
+    margin-left: 4px;
+  }
+
+  /* ---------- WHATSAPP HEADER ---------- */
+  .wa-header {
+    background: var(--wa-green-dark);
+    color: white;
+    padding: 8px 12px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .wa-back {
+    width: 22px;
+    color: white;
+    flex-shrink: 0;
+    opacity: 0.9;
+  }
+  .wa-avatar {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    background: #d97757;
+    flex-shrink: 0;
+    position: relative;
+    overflow: hidden;
+  }
+  .wa-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  .wa-avatar-online {
+    position: absolute;
+    bottom: 0; right: 0;
+    width: 11px; height: 11px;
+    background: #25D366;
+    border: 2px solid var(--wa-green-dark);
+    border-radius: 50%;
+  }
+  .wa-name-wrap {
+    flex: 1;
+    min-width: 0;
+  }
+  .wa-name {
+    font-size: 16px;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    color: white;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    line-height: 1.15;
+  }
+  .wa-verify {
+    width: 14px; height: 14px;
+    background: #25D366;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    flex-shrink: 0;
+  }
+  .wa-verify svg { width: 9px; height: 9px; fill: white; }
+  .wa-status {
+    font-size: 12px;
+    color: rgba(255,255,255,0.85);
+    font-weight: 400;
+    margin-top: 1px;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+  .wa-status::before {
+    content: '';
+    width: 6px; height: 6px;
+    background: #25D366;
+    border-radius: 50%;
+    box-shadow: 0 0 4px rgba(37,211,102,0.7);
+  }
+  .wa-actions {
+    display: flex;
+    gap: 14px;
+    color: white;
+    align-items: center;
+  }
+  .wa-actions svg { width: 20px; height: 20px; opacity: 0.95; }
+
+  .wa-substep {
+    background: var(--wa-green-darker);
+    color: rgba(255,255,255,0.9);
+    font-size: 10.5px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-align: center;
+    padding: 5px 12px;
+    text-transform: uppercase;
+  }
+  .wa-substep b { color: #25D366; }
+
+  /* ---------- CHAT AREA ---------- */
+  .chat {
+    padding: 10px 10px 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+  }
+
+  /* "Hoy" date pill */
+  .date-pill {
+    align-self: center;
+    background: rgba(225, 245, 254, 0.9);
+    color: var(--wa-text-soft);
+    font-size: 11.5px;
+    font-weight: 500;
+    padding: 4px 12px;
+    border-radius: 6px;
+    margin: 4px 0 8px;
+    box-shadow: 0 1px 1px rgba(0,0,0,0.08);
+  }
+
+  /* Bubble base */
+  .bubble {
+    max-width: 86%;
+    padding: 7px 9px 6px 10px;
+    border-radius: 8px;
+    box-shadow: 0 1px 1px rgba(0,0,0,0.08);
+    position: relative;
+    font-size: 14.5px;
+    line-height: 1.36;
+    color: var(--wa-text);
+    word-wrap: break-word;
+  }
+
+  .bubble-in {
+    background: var(--wa-bubble-in);
+    align-self: flex-start;
+    border-top-left-radius: 0;
+  }
+  .bubble-in::before {
+    content: '';
+    position: absolute;
+    top: 0; left: -8px;
+    width: 8px; height: 13px;
+    background: var(--wa-bubble-in);
+    clip-path: polygon(100% 0, 0 0, 100% 100%);
+  }
+  .bubble-out {
+    background: var(--wa-bubble-out);
+    align-self: flex-end;
+    border-top-right-radius: 0;
+  }
+  .bubble-out::before {
+    content: '';
+    position: absolute;
+    top: 0; right: -8px;
+    width: 8px; height: 13px;
+    background: var(--wa-bubble-out);
+    clip-path: polygon(0 0, 100% 0, 0 100%);
+  }
+  .bubble-grouped { border-top-left-radius: 8px; }
+  .bubble-grouped::before { display: none; }
+  .bubble-grouped-out { border-top-right-radius: 8px; }
+
+  .bubble-time {
+    font-size: 11px;
+    color: var(--wa-time);
+    float: right;
+    margin: 6px 0 -2px 8px;
+    display: inline-flex;
+    align-items: center;
+    gap: 3px;
+  }
+  .bubble-time svg { width: 14px; height: 12px; fill: var(--wa-read); }
+
+  .bubble b { font-weight: 700; }
+  .bubble .lh {
+    background: linear-gradient(transparent 60%, rgba(255,225,0,0.4) 60%);
+    padding: 0 2px;
+  }
+
+  /* Video bubble */
+  .video-bubble {
+    padding: 4px 4px 6px;
+    max-width: 86%;
+  }
+  .video-container {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 10;
+    background: #000;
+    border-radius: 6px;
+    overflow: hidden;
+    cursor: pointer;
+  }
+  .video-container video {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  /* Live badge */
+  .vsl-live {
+    position: absolute;
+    top: 8px; left: 8px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    background: rgba(0,0,0,0.6);
+    padding: 3px 7px 3px 6px;
+    border-radius: 4px;
+    z-index: 3;
+    pointer-events: none;
+  }
+  .vsl-live-dot {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: #ff3838;
+    animation: livePulse 1.4s ease-in-out infinite;
+  }
+  @keyframes livePulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.4; }
+  }
+  .vsl-live-text {
+    font-size: 9.5px;
+    color: white;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+  }
+  /* Viewer count */
+  .vsl-viewers {
+    position: absolute;
+    top: 8px; right: 8px;
+    background: rgba(0,0,0,0.6);
+    padding: 3px 7px;
+    border-radius: 4px;
+    font-size: 9.5px;
+    color: white;
+    font-weight: 600;
+    z-index: 3;
+    pointer-events: none;
+    display: flex;
+    align-items: center;
+    gap: 3px;
+  }
+  .vsl-viewers svg { width: 9px; height: 9px; fill: white; }
+  /* Tap to unmute overlay */
+  .vsl-overlay {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    background: linear-gradient(180deg, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.4) 100%);
+    cursor: pointer;
+    z-index: 2;
+    transition: opacity 0.25s ease;
+  }
+  .vsl-overlay.hidden {
+    opacity: 0;
+    pointer-events: none;
+  }
+  .vsl-overlay-pill {
+    background: rgba(204,0,0,0.95);
+    color: white;
+    padding: 10px 18px;
+    border-radius: 999px;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: -0.005em;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+    animation: tapPulse 1.5s ease-in-out infinite;
+  }
+  @keyframes tapPulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+  }
+  .vsl-overlay-pill svg { width: 16px; height: 16px; fill: white; flex-shrink: 0; }
+  .vsl-overlay-hint {
+    font-size: 11px;
+    color: white;
+    font-weight: 600;
+    text-shadow: 0 1px 4px rgba(0,0,0,0.6);
+  }
+  /* Video time + read state inside bubble */
+  .video-meta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 5px;
+    padding: 0 4px;
+    font-size: 11px;
+    color: var(--wa-time);
+  }
+  .video-meta .left {
+    display: flex; align-items: center; gap: 4px;
+  }
+  .video-meta svg { width: 13px; height: 13px; fill: var(--wa-text-soft); }
+  .video-meta .right { display: flex; align-items: center; gap: 3px; }
+  .video-meta .read { fill: var(--wa-read); width: 14px; height: 12px; }
+  .vsl-progress {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 2px;
+    background: rgba(255,255,255,0.15);
+    z-index: 3;
+    pointer-events: none;
+  }
+  .vsl-progress-fill {
+    height: 100%;
+    width: 0%;
+    background: #25D366;
+    transition: width 0.4s linear;
+  }
+
+  /* Bullets list inside bubble */
+  .bubble-list {
+    list-style: none;
+    padding: 0;
+    margin: 4px 0 0;
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+  }
+  .bubble-list li {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    font-size: 14px;
+    color: var(--wa-text);
+  }
+  .bubble-list li::before {
+    content: '✅';
+    font-size: 12px;
+    flex-shrink: 0;
+  }
+
+  /* Food gallery — feels like she sent a photo grid */
+  .photo-bubble {
+    padding: 4px;
+    max-width: 88%;
+  }
+  .photo-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 3px;
+    border-radius: 6px;
+    overflow: hidden;
+  }
+  .photo {
+    aspect-ratio: 1 / 1;
+    position: relative;
+  }
+  .photo::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at center, transparent 50%, rgba(0,0,0,0.35) 100%);
+  }
+  .food-bread { background:
+      radial-gradient(circle at 30% 30%, #d4a574 0%, #8b5a2b 40%, #3d2817 80%, #1a0f08 100%); }
+  .food-brownie { background:
+      radial-gradient(circle at 60% 40%, #6b3a1f 0%, #3a1f0f 50%, #1a0c05 100%); }
+  .food-cheese { background:
+      radial-gradient(ellipse at 50% 40%, #f4c842 0%, #d49520 35%, #8b5a0a 70%, #2d1d05 100%); }
+  .food-pasta { background:
+      radial-gradient(circle at 40% 50%, #f5dba0 0%, #d4a050 40%, #6b4520 75%, #1f1208 100%); }
+  .food-pizza { background:
+      radial-gradient(circle at 50% 50%, #e85a2b 0%, #b53d15 35%, #5a1d08 75%, #1a0805 100%); }
+  .food-donut { background:
+      radial-gradient(circle at 50% 50%, #f7c5a8 0%, #c08060 40%, #6b3a1f 80%, #1a0c05 100%); }
+
+  /* Hotmart widget bubble — looks like an action card sent in chat */
+  .widget-bubble {
+    padding: 0;
+    overflow: hidden;
+    max-width: 92%;
+    background: white;
+  }
+  .widget-bubble::before {
+    content: '';
+    position: absolute;
+    top: 0; left: -8px;
+    width: 8px; height: 13px;
+    background: white;
+    clip-path: polygon(100% 0, 0 0, 100% 100%);
+  }
+  .widget-eyebrow {
+    background: linear-gradient(90deg, rgba(37,211,102,0.12), rgba(37,211,102,0.04));
+    color: var(--wa-green-dark);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    padding: 6px 12px;
+    border-bottom: 1px solid rgba(0,0,0,0.06);
+    text-align: center;
+  }
+  #hotmart-sales-funnel {
+    background: white;
+    min-height: 200px;
+  }
+  #hotmart-sales-funnel:empty::after {
+    content: 'Aquí carga el widget de Hotmart\A (botón, precio y "no gracias")';
+    white-space: pre;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 200px;
+    color: var(--wa-text-mute);
+    font-size: 11.5px;
+    font-weight: 500;
+    text-align: center;
+    line-height: 1.6;
+    padding: 0 20px;
+  }
+  .widget-time {
+    text-align: right;
+    padding: 4px 10px 6px;
+    font-size: 11px;
+    color: var(--wa-time);
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 3px;
+  }
+  .widget-time svg { width: 14px; height: 12px; fill: var(--wa-read); }
+
+  /* Typing indicator */
+  .typing-bubble {
+    align-self: flex-start;
+    background: var(--wa-bubble-in);
+    padding: 11px 14px 9px;
+    border-radius: 8px;
+    border-top-left-radius: 0;
+    box-shadow: 0 1px 1px rgba(0,0,0,0.08);
+    display: flex;
+    gap: 4px;
+    align-items: center;
+    margin: 4px 0;
+    position: relative;
+  }
+  .typing-bubble::before {
+    content: '';
+    position: absolute;
+    top: 0; left: -8px;
+    width: 8px; height: 13px;
+    background: var(--wa-bubble-in);
+    clip-path: polygon(100% 0, 0 0, 100% 100%);
+  }
+  .typing-dot {
+    width: 7px; height: 7px;
+    border-radius: 50%;
+    background: var(--wa-text-mute);
+    opacity: 0.4;
+    animation: typing 1.2s ease-in-out infinite;
+  }
+  .typing-dot:nth-child(2) { animation-delay: 0.2s; }
+  .typing-dot:nth-child(3) { animation-delay: 0.4s; }
+  @keyframes typing {
+    0%, 60%, 100% { opacity: 0.3; transform: translateY(0); }
+    30% { opacity: 1; transform: translateY(-3px); }
+  }
+
+  /* Footer security note as system bubble */
+  .system-line {
+    align-self: center;
+    background: rgba(225, 245, 254, 0.9);
+    color: var(--wa-text-soft);
+    font-size: 11px;
+    font-weight: 500;
+    padding: 5px 12px;
+    border-radius: 6px;
+    margin: 6px 0 8px;
+    text-align: center;
+    box-shadow: 0 1px 1px rgba(0,0,0,0.05);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .system-line svg { width: 11px; height: 11px; fill: var(--wa-text-soft); }
+
+  /* Bottom safe spacer */
+  .bottom-spacer { height: 24px; }
+
+  /* Bubble entrance animation */
+  .bubble, .typing-bubble, .system-line, .date-pill {
+    animation: bubbleIn 0.35s ease-out backwards;
+  }
+  @keyframes bubbleIn {
+    from { opacity: 0; transform: translateY(8px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+</style>
+</head>
+<body>
+  <main class="page" data-screen-label="01 Upsell v6 WA short">
+
+    <!-- TOP WARNING -->
+    <div class="warning">
+      <span class="warning-icon">⚠️</span>
+      <span>Espera… tu pedido aún no está completo</span>
+      <b>PASO 2/2</b>
+    </div>
+
+    <!-- WA HEADER -->
+    <header class="wa-header">
+      <svg class="wa-back" viewBox="0 0 24 24" fill="currentColor"><path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/></svg>
+      <div class="wa-avatar">
+        <img src="https://minioback.lavishcreative.com/typebot/public/workspaces/cm4oe1xs10000c353fx12er63/typebots/cm6z2ws9u000br1thfd47p8m1/hostAvatar?v=1739198118696" alt="Maria Aguero" />
+        <span class="wa-avatar-online"></span>
+      </div>
+      <div class="wa-name-wrap">
+        <div class="wa-name">
+          Maria Aguero
+          <span class="wa-verify">
+            <svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+          </span>
+        </div>
+        <div class="wa-status">en línea</div>
+      </div>
+      <div class="wa-actions">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17 10.5V7a1 1 0 0 0-1-1H4a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-3.5l4 4v-11z"/></svg>
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.01 15.38c-1.23 0-2.42-.2-3.53-.56a.977.977 0 0 0-1.01.24l-1.57 1.97c-2.83-1.35-5.48-3.9-6.89-6.83l1.95-1.66c.27-.28.35-.67.24-1.02-.37-1.11-.56-2.3-.56-3.53 0-.54-.45-.99-.99-.99H4.19C3.65 3 3 3.24 3 3.99 3 13.28 10.73 21 20.01 21c.71 0 .99-.63.99-1.18v-3.45c0-.54-.45-.99-.99-.99z"/></svg>
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 8c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm0 2c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0 6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"/></svg>
+      </div>
+    </header>
+
+    <!-- CHAT -->
+    <div class="chat">
+
+      <div class="date-pill">HOY</div>
+
+      <!-- VIDEO BUBBLE — primeiro, sem recap -->
+      <div class="bubble bubble-in video-bubble" id="videoBubble" style="animation-delay: 0.05s">
+        <div class="video-container" id="videoContainer">
+          <video id="video" autoplay muted playsinline webkit-playsinline></video>
+
+          <div class="vsl-live">
+            <span class="vsl-live-dot"></span>
+            <span class="vsl-live-text">EN VIVO</span>
+          </div>
+          <div class="vsl-viewers">
+            <svg viewBox="0 0 24 24"><path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17a5 5 0 110-10 5 5 0 010 10zm0-8a3 3 0 100 6 3 3 0 000-6z"/></svg>
+            <span id="viewers-count">2,847</span>
+          </div>
+
+          <div class="vsl-overlay" id="overlay">
+            <div class="vsl-overlay-pill">
+              <svg viewBox="0 0 24 24">
+                <path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3a4.5 4.5 0 0 0-2.5-4v8a4.5 4.5 0 0 0 2.5-4zM14 3.23v2.06A7 7 0 0 1 14 18.71v2.06a9 9 0 0 0 0-17.54z"/>
+              </svg>
+              <span>Toca para escuchar</span>
+            </div>
+            <div class="vsl-overlay-hint">Tu vídeo ya ha comenzado</div>
+          </div>
+
+          <div class="vsl-progress"><div class="vsl-progress-fill" id="progressFill"></div></div>
+        </div>
+        <div class="video-meta">
+          <span class="left">
+            <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+            <span id="vidDur">1:42</span>
+          </span>
+          <span class="right">17:30
+            <svg class="read" viewBox="0 0 16 11"><path d="M11.071.653a.457.457 0 0 0-.304-.102.493.493 0 0 0-.381.178l-6.19 7.636-2.405-2.272a.463.463 0 0 0-.336-.146.42.42 0 0 0-.343.146L.683 6.764a.461.461 0 0 0 0 .679l3.097 2.937c.279.267.51.4.694.4.264 0 .521-.174.771-.523L11.39 1.78c.232-.32.214-.59-.055-.809L11.07.653zm4.072 0a.49.49 0 0 0-.31-.102.516.516 0 0 0-.388.178l-6.176 7.622L7.92 7.371l-1.014 1.32.875.83c.279.267.51.4.694.4.264 0 .521-.174.771-.523l6.176-8.435c.232-.328.214-.602-.055-.821l-.213-.142a.49.49 0 0 0-.011 0z"/></svg>
+          </span>
+        </div>
+      </div>
+
+      <!-- Hotmart widget direto, sem mais explicação -->
+      <div class="bubble bubble-in widget-bubble" style="animation-delay: 0.3s">
+        <div class="widget-eyebrow">👇 Activa tu acceso</div>
+        <div id="hotmart-sales-funnel"></div>
+        <div class="widget-time">17:30
+          <svg viewBox="0 0 16 11"><path d="M11.071.653a.457.457 0 0 0-.304-.102.493.493 0 0 0-.381.178l-6.19 7.636-2.405-2.272a.463.463 0 0 0-.336-.146.42.42 0 0 0-.343.146L.683 6.764a.461.461 0 0 0 0 .679l3.097 2.937c.279.267.51.4.694.4.264 0 .521-.174.771-.523L11.39 1.78c.232-.32.214-.59-.055-.809L11.07.653zm4.072 0a.49.49 0 0 0-.31-.102.516.516 0 0 0-.388.178l-6.176 7.622L7.92 7.371l-1.014 1.32.875.83c.279.267.51.4.694.4.264 0 .521-.174.771-.523l6.176-8.435c.232-.328.214-.602-.055-.821l-.213-.142a.49.49 0 0 0-.011 0z"/></svg>
+        </div>
+      </div>
+
+      <div class="bottom-spacer"></div>
+    </div>
+
+  </main>
+
+  <!-- HOTMART -->
+  <script src="https://checkout.hotmart.com/lib/hotmart-checkout-elements.js"></script>
+  <script>
+    if (window.checkoutElements) {
+      try { checkoutElements.init('salesFunnel').mount('#hotmart-sales-funnel'); } catch(e) {}
+    }
+  </script>
+
+  <!-- VSL m3u8 + smart autoplay -->
+  <script>
+    (function() {
+      var video = document.getElementById('video');
+      var overlay = document.getElementById('overlay');
+      var container = document.getElementById('videoContainer');
+      var progressFill = document.getElementById('progressFill');
+      var videoSrc = "https://cdn.jsdelivr.net/gh/brengrassy/adios3@f37b1edd755ed644c4388ab468828cd3fd953b32/Adios-Gluten.m3u8";
+
+      if (window.Hls && Hls.isSupported()) {
+        var hls = new Hls();
+        hls.loadSource(videoSrc);
+        hls.attachMedia(video);
+      } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
+        video.src = videoSrc;
+      }
+
+      function isInAppBrowser() {
+        var ua = (navigator.userAgent || '').toLowerCase();
+        return /fban|fbav|fb_iab|fb4a|instagram|messenger|line\/|tiktok|musical_ly/i.test(ua);
+      }
+
+      var hasAttemptedUnmute = false;
+      function tryUnmute() {
+        if (hasAttemptedUnmute) return;
+        hasAttemptedUnmute = true;
+        video.muted = false;
+        video.volume = 1.0;
+        var p = video.play();
+        if (p && p.then) {
+          p.then(function(){ hideOverlay(); }).catch(function(){
+            hasAttemptedUnmute = false;
+            video.muted = true;
+            video.play().catch(function(){});
+          });
+        }
+      }
+      function hideOverlay() { overlay.classList.add('hidden'); }
+
+      overlay.addEventListener('click', function() {
+        hasAttemptedUnmute = false;
+        tryUnmute();
+      });
+      container.addEventListener('click', function() {
+        if (overlay.classList.contains('hidden')) return;
+        hasAttemptedUnmute = false;
+        tryUnmute();
+      });
+
+      if (isInAppBrowser()) {
+        setTimeout(tryUnmute, 400);
+      }
+
+      var scrollFired = false;
+      function onFirstScroll() {
+        if (scrollFired) return;
+        scrollFired = true;
+        window.removeEventListener('scroll', onFirstScroll);
+        window.removeEventListener('touchmove', onFirstScroll);
+        tryUnmute();
+      }
+      window.addEventListener('scroll', onFirstScroll, { passive: true });
+      window.addEventListener('touchmove', onFirstScroll, { passive: true });
+
+      if ('IntersectionObserver' in window) {
+        var io = new IntersectionObserver(function(entries) {
+          entries.forEach(function(e) {
+            if (e.isIntersecting && e.intersectionRatio > 0.4) {
+              tryUnmute();
+            }
+          });
+        }, { threshold: [0, 0.4, 0.6, 1] });
+        io.observe(container);
+      }
+
+      var gestureFired = false;
+      function onFirstGesture() {
+        if (gestureFired) return;
+        gestureFired = true;
+        document.removeEventListener('touchstart', onFirstGesture);
+        document.removeEventListener('pointerdown', onFirstGesture);
+        tryUnmute();
+      }
+      document.addEventListener('touchstart', onFirstGesture, { passive: true, once: true });
+      document.addEventListener('pointerdown', onFirstGesture, { passive: true, once: true });
+
+      video.addEventListener('timeupdate', function() {
+        if (video.duration && isFinite(video.duration)) {
+          var pct = (video.currentTime / video.duration) * 100;
+          progressFill.style.width = pct + '%';
+        }
+      });
+
+      var viewersEl = document.getElementById('viewers-count');
+      var base = 2127 + Math.floor(Math.random() * 2452);
+      function fmt(n) { return n.toLocaleString('es-MX'); }
+      if (viewersEl) viewersEl.textContent = fmt(base);
+      setInterval(function() {
+        base += Math.random() > 0.4 ? 1 : 0;
+        if (viewersEl) viewersEl.textContent = fmt(base);
+      }, 1400);
+
+      // --- Live timestamps from user's browser ---
+      function nowHHMM() {
+        var d = new Date();
+        var h = String(d.getHours()).padStart(2, '0');
+        var m = String(d.getMinutes()).padStart(2, '0');
+        return h + ':' + m;
+      }
+      function updateTimestamps() {
+        var stamp = nowHHMM();
+        var nodes = document.querySelectorAll('.bubble-time, .widget-time, .video-meta .right');
+        nodes.forEach(function(el) {
+          for (var i = 0; i < el.childNodes.length; i++) {
+            var n = el.childNodes[i];
+            if (n.nodeType === 3 && n.textContent.trim()) {
+              n.textContent = stamp + ' ';
+              break;
+            }
+          }
+        });
+      }
+      updateTimestamps();
+    })();
+  </script>
+</body>
+</html>
