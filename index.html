@@ -94,7 +94,7 @@
   .wa-header {
     background: var(--wa-green-dark);
     color: white;
-    padding: 8px 12px;
+    padding: 6px 12px;
     display: flex;
     align-items: center;
     gap: 10px;
@@ -191,7 +191,7 @@
 
   /* ---------- CHAT AREA ---------- */
   .chat {
-    padding: 10px 10px 10px;
+    padding: 8px 10px 10px;
     display: flex;
     flex-direction: column;
     gap: 3px;
@@ -204,9 +204,9 @@
     color: var(--wa-text-soft);
     font-size: 11.5px;
     font-weight: 500;
-    padding: 4px 12px;
+    padding: 3px 11px;
     border-radius: 6px;
-    margin: 4px 0 8px;
+    margin: 2px 0 6px;
     box-shadow: 0 1px 1px rgba(0,0,0,0.08);
   }
 
@@ -466,30 +466,27 @@
   .food-donut { background:
       radial-gradient(circle at 50% 50%, #f7c5a8 0%, #c08060 40%, #6b3a1f 80%, #1a0c05 100%); }
 
-  /* Hotmart widget bubble — looks like an action card sent in chat */
+  /* Hotmart widget bubble — quase edge-to-edge, sem cauda, máxima respiração */
   .widget-bubble {
     padding: 0;
     overflow: hidden;
-    max-width: 92%;
+    align-self: stretch;
+    max-width: none;
+    width: calc(100% + 4px);
+    margin: 6px -7px 0;
     background: white;
+    border-radius: 10px;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.1);
   }
-  .widget-bubble::before {
-    content: '';
-    position: absolute;
-    top: 0; left: -8px;
-    width: 8px; height: 13px;
-    background: white;
-    clip-path: polygon(100% 0, 0 0, 100% 100%);
-  }
+  .widget-bubble::before { display: none; }
   .widget-eyebrow {
-    background: linear-gradient(90deg, rgba(37,211,102,0.12), rgba(37,211,102,0.04));
+    background: transparent;
     color: var(--wa-green-dark);
     font-size: 11px;
     font-weight: 700;
     letter-spacing: 0.04em;
     text-transform: uppercase;
-    padding: 6px 12px;
-    border-bottom: 1px solid rgba(0,0,0,0.06);
+    padding: 8px 12px 4px;
     text-align: center;
   }
   #hotmart-sales-funnel {
@@ -577,7 +574,7 @@
   .system-line svg { width: 11px; height: 11px; fill: var(--wa-text-soft); }
 
   /* Bottom safe spacer */
-  .bottom-spacer { height: 24px; }
+  .bottom-spacer { height: 16px; }
 
   /* Bubble entrance animation */
   .bubble, .typing-bubble, .system-line, .date-pill {
@@ -596,7 +593,6 @@
     <div class="warning">
       <span class="warning-icon">⚠️</span>
       <span>Espera… tu pedido aún no está completo</span>
-      <b>PASO 2/2</b>
     </div>
 
     <!-- WA HEADER -->
