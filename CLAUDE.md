@@ -21,35 +21,12 @@ the tracker block before `</body>`:
       if (window.trackEvent) window.trackEvent('<EVENT_NAME>', { content_name: '<NAME>' });
     }, 600);
   });
-
-  // Inject sck=external_id into Hotmart iframe when it mounts
-  (function() {
-    var container = document.getElementById('hotmart-sales-funnel');
-    if (!container) return;
-    var done = false;
-    function inject(iframe) {
-      if (done || !iframe || !iframe.src) return;
-      var sck = (window.trackingData && window.trackingData.external_id) || localStorage.getItem('sck_id');
-      if (!sck) return;
-      try {
-        var u = new URL(iframe.src);
-        if (!u.searchParams.get('sck')) {
-          u.searchParams.set('sck', sck);
-          iframe.src = u.toString();
-        }
-        done = true;
-      } catch(e) {}
-    }
-    var existing = container.querySelector('iframe');
-    if (existing) inject(existing);
-    var mo = new MutationObserver(function() {
-      var f = container.querySelector('iframe');
-      if (f) { inject(f); if (done) mo.disconnect(); }
-    });
-    mo.observe(container, { childList: true, subtree: true });
-  })();
 </script>
 ```
+
+Não mexa no iframe da Hotmart (não reescrever `src`). O tracker já
+recupera o `sck` da URL/localStorage/cookie e envia como `external_id`
+pro Pixel + CAPI. A Hotmart já tem o buyer atrelado via `fsid` do funil.
 
 Per-page event name:
 - `index.html` → `UpsellView` / `Upsell v6`
