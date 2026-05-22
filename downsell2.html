@@ -554,5 +554,41 @@
       try { checkoutElements.init('salesFunnel').mount('#hotmart-sales-funnel'); } catch(e) {}
     }
   </script>
+
+  <!-- Tracker (Pixel + CAPI) -->
+  <script src="./tracker.js"></script>
+  <script>
+    window.addEventListener('load', function() {
+      setTimeout(function() {
+        if (window.trackEvent) window.trackEvent('Downsell2View', { content_name: 'Downsell 2 $1' });
+      }, 600);
+    });
+
+    (function() {
+      var container = document.getElementById('hotmart-sales-funnel');
+      if (!container) return;
+      var done = false;
+      function inject(iframe) {
+        if (done || !iframe || !iframe.src) return;
+        var sck = (window.trackingData && window.trackingData.external_id) || localStorage.getItem('sck_id');
+        if (!sck) return;
+        try {
+          var u = new URL(iframe.src);
+          if (!u.searchParams.get('sck')) {
+            u.searchParams.set('sck', sck);
+            iframe.src = u.toString();
+          }
+          done = true;
+        } catch(e) {}
+      }
+      var existing = container.querySelector('iframe');
+      if (existing) inject(existing);
+      var mo = new MutationObserver(function() {
+        var f = container.querySelector('iframe');
+        if (f) { inject(f); if (done) mo.disconnect(); }
+      });
+      mo.observe(container, { childList: true, subtree: true });
+    })();
+  </script>
 </body>
 </html>
