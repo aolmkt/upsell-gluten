@@ -682,68 +682,80 @@
       }
 
       var hasAttemptedUnmute = false;
-      function tryUnmute() {
-        if (hasAttemptedUnmute) return;
+      var autoUnmuteGivenUp = false;
+
+      function tryUnmute(viaUserGesture) {
+        if (hasAttemptedUnmute && !viaUserGesture) return;
+        if (autoUnmuteGivenUp && !viaUserGesture) return;
         hasAttemptedUnmute = true;
         video.muted = false;
         video.volume = 1.0;
         var p = video.play();
         if (p && p.then) {
-          p.then(function(){ hideOverlay(); }).catch(function(){
+          p.then(function(){
+            hideOverlay();
+          }).catch(function(){
+            // Browser blocked unmuted playback. Stop auto-retrying — wait for real tap.
+            autoUnmuteGivenUp = true;
             hasAttemptedUnmute = false;
             video.muted = true;
-            video.play().catch(function(){});
+            // Resume muted playback silently
+            var p2 = video.play();
+            if (p2 && p2.catch) p2.catch(function(){});
+            // Disconnect intersection observer so it stops triggering
+            try { if (io) io.disconnect(); } catch(e) {}
           });
         }
       }
       function hideOverlay() { overlay.classList.add('hidden'); }
 
-      overlay.addEventListener('click', function() {
+      // Real user taps — these always count as gestures
+      overlay.addEventListener('click', function(e) {
+        e.stopPropagation();
         hasAttemptedUnmute = false;
-        tryUnmute();
+        autoUnmuteGivenUp = false;
+        tryUnmute(true);
       });
       container.addEventListener('click', function() {
         if (overlay.classList.contains('hidden')) return;
         hasAttemptedUnmute = false;
-        tryUnmute();
+        autoUnmuteGivenUp = false;
+        tryUnmute(true);
       });
 
+      // In-app browsers (FB/IG) allow programmatic unmute — try once
       if (isInAppBrowser()) {
-        setTimeout(tryUnmute, 400);
+        setTimeout(function(){ tryUnmute(false); }, 400);
       }
 
-      var scrollFired = false;
-      function onFirstScroll() {
-        if (scrollFired) return;
-        scrollFired = true;
-        window.removeEventListener('scroll', onFirstScroll);
-        window.removeEventListener('touchmove', onFirstScroll);
-        tryUnmute();
-      }
-      window.addEventListener('scroll', onFirstScroll, { passive: true });
-      window.addEventListener('touchmove', onFirstScroll, { passive: true });
-
-      if ('IntersectionObserver' in window) {
-        var io = new IntersectionObserver(function(entries) {
-          entries.forEach(function(e) {
-            if (e.isIntersecting && e.intersectionRatio > 0.4) {
-              tryUnmute();
-            }
-          });
-        }, { threshold: [0, 0.4, 0.6, 1] });
-        io.observe(container);
-      }
-
-      var gestureFired = false;
+      // First real user gesture anywhere on the document — counts as activation
       function onFirstGesture() {
-        if (gestureFired) return;
-        gestureFired = true;
         document.removeEventListener('touchstart', onFirstGesture);
         document.removeEventListener('pointerdown', onFirstGesture);
-        tryUnmute();
+        document.removeEventListener('click', onFirstGesture);
+        autoUnmuteGivenUp = false;
+        hasAttemptedUnmute = false;
+        tryUnmute(true);
       }
       document.addEventListener('touchstart', onFirstGesture, { passive: true, once: true });
       document.addEventListener('pointerdown', onFirstGesture, { passive: true, once: true });
+      document.addEventListener('click', onFirstGesture, { passive: true, once: true });
+
+      // Intersection observer — only one shot, disconnects on first attempt
+      var io = null;
+      if ('IntersectionObserver' in window) {
+        io = new IntersectionObserver(function(entries) {
+          entries.forEach(function(e) {
+            if (e.isIntersecting && e.intersectionRatio > 0.4) {
+              if (!hasAttemptedUnmute && !autoUnmuteGivenUp) {
+                tryUnmute(false);
+              }
+              try { io.disconnect(); } catch(err) {}
+            }
+          });
+        }, { threshold: [0.4] });
+        io.observe(container);
+      }
 
       video.addEventListener('timeupdate', function() {
         if (video.duration && isFinite(video.duration)) {
