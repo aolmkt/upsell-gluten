@@ -28,6 +28,22 @@ Não mexa no iframe da Hotmart (não reescrever `src`). O tracker já
 recupera o `sck` da URL/localStorage/cookie e envia como `external_id`
 pro Pixel + CAPI. A Hotmart já tem o buyer atrelado via `fsid` do funil.
 
+## ⚠️ Customizações permanentes do `tracker.js`
+
+Quando o usuário trouxer uma versão nova do tracker, **manter sempre estas
+mudanças** em relação ao código original do v2.81:
+
+1. **Remover o auto-linker da Hotmart** (bloco `autoLink` no final) — sem efeito útil,
+   já que o checkout é via iframe (não `<a href>`).
+2. **Remover o disparo automático de `ViewContent`** dentro de `initSystem()`. O tracker
+   deve disparar apenas `PageView` no carregamento. Os eventos personalizados
+   (`UpsellView`, `DownsellView`, `Downsell2View`) ficam por conta das páginas via
+   `window.trackEvent(...)`. Isso evita contaminar métricas com `ViewContent`
+   genérico em todas as páginas.
+
+Manter o Pixel ID `1771320517046203` e a `API_URL` `https://tracking.lavishcreative.com`
+salvo instrução contrária.
+
 Per-page event name:
 - `index.html` → `UpsellView` / `Upsell v6`
 - `downsell.html` → `DownsellView` / `Downsell`

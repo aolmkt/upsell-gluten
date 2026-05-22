@@ -114,11 +114,9 @@
             .then(r=>r.json()).then(d => {
                 cachedIp = d.ip;
                 sendEvent('PageView', d.ip);
-                sendEvent('ViewContent', d.ip);
             })
             .catch(() => {
                 sendEvent('PageView', null);
-                sendEvent('ViewContent', null);
             });
     }
 
