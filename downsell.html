@@ -499,10 +499,7 @@
         <div id="hotmart-sales-funnel"></div>
       </div>
 
-      <!-- 7) No gracias — saída discreta -->
-      <div class="decline-row pre-reveal" id="declineRow">
-        <a id="declineLink" href="#">No gracias, prefiero continuar sin las recetas</a>
-      </div>
+      <!-- Saída discreta removida — o widget da Hotmart já traz "no gracias" nativo. -->
 
       <div class="bottom-spacer"></div>
     </div>
@@ -519,7 +516,6 @@
       var b3 = document.getElementById('b3');
       var b4 = document.getElementById('b4');
       var widget = document.getElementById('widgetBubble');
-      var decline = document.getElementById('declineRow');
 
       function show(el) {
         if (!el) return;
@@ -593,9 +589,6 @@
           } catch(e) {}
         }, 380);
       });
-      step(400, function() {
-        show(decline);
-      });
 
       // Live timestamps from user's clock
       function nowHHMM() {
@@ -613,14 +606,6 @@
       updateTimestamps();
 
       // "No gracias" — closes the flow. In production this would route home or close window.
-      var declineLink = document.getElementById('declineLink');
-      if (declineLink) {
-        declineLink.addEventListener('click', function(e) {
-          e.preventDefault();
-          // Replace with real route in production
-          try { window.location.href = '/gracias'; } catch(err) {}
-        });
-      }
     })();
   </script>
 
