@@ -64,7 +64,7 @@
     }
   }
 
-  /* ---------- WA HEADER (idêntico — continuidade total) ---------- */
+  /* ---------- HEADER WHATSAPP ---------- */
   .wa-header {
     background: var(--wa-green-dark);
     color: white;
@@ -173,7 +173,7 @@
   .bubble-time svg { width: 14px; height: 12px; fill: var(--wa-read); }
   .bubble b { font-weight: 700; }
 
-  /* Minimal bullet list — denso, sem firula */
+  /* Lista compacta dentro de burbuja */
   .bubble-list {
     list-style: none;
     padding: 0;
@@ -200,8 +200,7 @@
   }
   .bubble-list li .chk svg { width: 9px; height: 9px; fill: white; }
 
-  /* ----- "imagen absurda": cafezinho que amarra com "menos de lo que cuesta un café"
-       Não é a oferta. É uma piada visual silenciosa. ----- */
+  /* ----- Foto ----- */
   .photo-bubble {
     padding: 4px;
     max-width: 58%;
@@ -394,7 +393,7 @@
         <span class="typing-dot"></span>
       </div>
 
-      <!-- 1) Abertura — "última cosa". Reseta o cansaço com promessa de fim. -->
+      <!-- 1) Apertura -->
       <div class="bubble bubble-in pre-reveal" id="b1">
         Ok… última cosa 👇
         <span class="bubble-time">
@@ -403,7 +402,7 @@
         </span>
       </div>
 
-      <!-- 2) Foto: cafezinho. Não fala "café" em lugar nenhum — a foto sussurra "menos que un café" sozinha. -->
+      <!-- Foto -->
       <div class="bubble bubble-in photo-bubble pre-reveal" id="b2">
         <div class="photo-wrap">
           <img src="https://images.unsplash.com/photo-1510707577719-ae7c14805e3a?auto=format&fit=crop&w=700&q=80" alt="" onerror="this.style.display='none'" />
@@ -414,7 +413,7 @@
         </div>
       </div>
 
-      <!-- 3) Bubble da oferta — enquadrada como TESTE, não desconto. -->
+      <!-- 3) Burbuja de la oferta -->
       <div class="bubble bubble-in pre-reveal" id="b3">
         Prueba la comunidad por <b>$1</b>.
         <ul class="bubble-list">
@@ -428,7 +427,7 @@
         </span>
       </div>
 
-      <!-- 4) CTA curta — mesma fórmula do upsell e downsell 1 (continuidade) -->
+      <!-- 4) CTA -->
       <div class="bubble bubble-in pre-reveal" id="b4">
         👇 Activa tu acceso
         <span class="bubble-time">
@@ -442,8 +441,7 @@
         <div id="hotmart-sales-funnel"></div>
       </div>
 
-      <!-- Saída discreta removida — o widget da Hotmart já tem "no gracias" nativo,
-           duplicar dá impressão de funil e quebra a sensação de conversa. -->
+      <!-- Sin enlace de salida propio -->
 
       <div class="bottom-spacer"></div>
     </div>
@@ -490,8 +488,8 @@
         } catch(e) {}
       }
 
-      // Cadência ENXUTA: ritmo mais rápido que downsell 1.
-      // O cérebro tá cansado — não pode haver pause longo aqui.
+      // Cadencia
+      // Sin pausas largas
       var t = 0;
       function step(delay, fn) {
         t += delay;
