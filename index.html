@@ -62,7 +62,7 @@
     }
   }
 
-  /* ---------- TOP WARNING (sticky-feeling top bar) ---------- */
+  /* ---------- BARRA SUPERIOR ---------- */
   .warning {
     background: var(--warn);
     color: white;
@@ -421,7 +421,7 @@
     flex-shrink: 0;
   }
 
-  /* Food gallery — feels like she sent a photo grid */
+  /* Galeria de fotos */
   .photo-bubble {
     padding: 4px;
     max-width: 88%;
@@ -456,7 +456,7 @@
   .food-donut { background:
       radial-gradient(circle at 50% 50%, #f7c5a8 0%, #c08060 40%, #6b3a1f 80%, #1a0c05 100%); }
 
-  /* Hotmart widget bubble — quase edge-to-edge, sem cauda, máxima respiração */
+  /* Burbuja del widget */
   .widget-bubble {
     padding: 0;
     overflow: hidden;
@@ -595,7 +595,7 @@
     max-height: 2000px;
   }
 
-  /* ---------- VIDEO REACTIONS (Instagram-live style) ---------- */
+  /* ---------- REACCIONES DEL VIDEO ---------- */
   .reactions-layer {
     position: absolute;
     inset: 0;
@@ -674,7 +674,7 @@
 
       <div class="date-pill">🔓 Último paso</div>
 
-      <!-- VIDEO BUBBLE — primeiro, sem recap -->
+      <!-- BURBUJA DE VIDEO -->
       <div class="bubble bubble-in video-bubble" id="videoBubble" style="animation-delay: 0.05s">
         <div class="video-container" id="videoContainer">
           <video id="video" autoplay muted playsinline webkit-playsinline></video>
@@ -700,15 +700,15 @@
 
           <div class="vsl-progress"><div class="vsl-progress-fill" id="progressFill"></div></div>
 
-          <!-- Floating reactions layer (Instagram Live style) -->
+          <!-- Capa de reacciones flotantes -->
           <div class="reactions-layer" id="reactionsLayer"></div>
         </div>
       </div>
 
-      <!-- Typing indicator — Maria escribiendo… -->
+      <!-- Indicador de escritura -->
       <div class="typing-bubble pre-reveal" id="typingBubble"></div>
 
-      <!-- Hotmart widget direto, sem mais explicação -->
+      <!-- Widget de Hotmart -->
       <div class="bubble bubble-in widget-bubble pre-reveal" id="widgetBubble">
         <div class="widget-eyebrow">👇 Activa tu acceso</div>
         <div id="hotmart-sales-funnel"></div>
@@ -730,7 +730,7 @@
         typing.innerHTML = '<span class="typing-dot"></span><span class="typing-dot"></span><span class="typing-dot"></span>';
       }
 
-      // Play WhatsApp-style notification ding via Web Audio API
+      // Sonido de notificacion via Web Audio API
       // No external asset, no permission, works after first gesture.
       function playDing() {
         try {
@@ -750,7 +750,7 @@
             osc.start(now + start);
             osc.stop(now + start + duration + 0.05);
           }
-          // Two-tone "ding" — high then higher, like WhatsApp message
+          // Sonido de dos tonos
           tone(660, 0, 0.18, 0.20);
           tone(990, 0.07, 0.22, 0.18);
         } catch(e) {}
@@ -762,7 +762,7 @@
         } catch(e) {}
       }
 
-      // Reveal sequence: typing for 2.4s, then widget + ding + buzz
+      // Secuencia de revelado
       function revealSequence() {
         if (!typing || !widget) return;
         // Show typing
@@ -773,7 +773,7 @@
           typing.classList.remove('reveal-in');
           typing.classList.add('pre-reveal');
           setTimeout(function() {
-            // Show widget with notification cues
+            // Mostrar widget
             widget.classList.remove('pre-reveal');
             widget.classList.add('reveal-in');
             playDing();
@@ -793,7 +793,7 @@
     })();
   </script>
 
-  <!-- Floating live reactions on the video -->
+  <!-- Reacciones flotantes -->
   <script>
     (function() {
       var layer = document.getElementById('reactionsLayer');
@@ -823,7 +823,7 @@
         setTimeout(function(){ if (el.parentNode) el.parentNode.removeChild(el); }, 5200);
       }
 
-      // First reaction after ~3s, then every 4.5–7s
+      // First reaction after ~3s, then every 4.5 to 7s
       setTimeout(function tick() {
         spawn();
         var nextDelay = 4500 + Math.random() * 2500;
@@ -875,7 +875,7 @@
       var autoUnmuteGivenUp = false;
 
       function tryUnmute(viaUserGesture) {
-        // If video is already playing with sound, do nothing —
+        // If video is already playing with sound, do nothing:
         // just make sure the overlay is hidden
         if (!video.muted && !video.paused) {
           hideOverlay();
@@ -895,7 +895,7 @@
           p.then(function(){
             hideOverlay();
           }).catch(function(){
-            // Browser blocked unmuted playback. Stop auto-retrying — wait for real tap.
+            // Browser blocked unmuted playback. Wait for a real tap.
             autoUnmuteGivenUp = true;
             hasAttemptedUnmute = false;
             video.muted = true;
@@ -909,7 +909,7 @@
       }
       function hideOverlay() { overlay.classList.add('hidden'); }
 
-      // Real user taps — these always count as gestures
+      // Real user taps always count as gestures
       overlay.addEventListener('click', function(e) {
         e.stopPropagation();
         hasAttemptedUnmute = false;
@@ -923,12 +923,12 @@
         tryUnmute(true);
       });
 
-      // In-app browsers (FB/IG) allow programmatic unmute — try once
+      // In-app browsers (FB/IG) allow programmatic unmute, try once
       if (isInAppBrowser()) {
         setTimeout(function(){ tryUnmute(false); }, 400);
       }
 
-      // First real user gesture anywhere on the document — counts as activation
+      // First real user gesture anywhere on the document counts as activation
       function onFirstGesture() {
         document.removeEventListener('touchstart', onFirstGesture);
         document.removeEventListener('pointerdown', onFirstGesture);
@@ -941,7 +941,7 @@
       document.addEventListener('pointerdown', onFirstGesture, { passive: true, once: true });
       document.addEventListener('click', onFirstGesture, { passive: true, once: true });
 
-      // Intersection observer — only one shot, disconnects on first attempt
+      // Intersection observer, one shot, disconnects on first attempt
       var io = null;
       if ('IntersectionObserver' in window) {
         io = new IntersectionObserver(function(entries) {
