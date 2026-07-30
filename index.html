@@ -639,7 +639,7 @@
 </style>
 </head>
 <body>
-  <main class="page" data-screen-label="01 Upsell v6 WA short">
+  <main class="page" data-screen-label="Upsell v6">
 
     <!-- TOP WARNING -->
     <div class="warning">
@@ -815,7 +815,7 @@
         var heart = hearts[Math.floor(Math.random() * hearts.length)];
         el.innerHTML = '<span class="heart">' + heart + '</span>' + name;
         // Random horizontal position (left margin) and small drift
-        var left = 8 + Math.floor(Math.random() * 35); // 8% – 43% from left
+        var left = 8 + Math.floor(Math.random() * 35); // 8% to 43% from left
         el.style.left = left + '%';
         el.style.setProperty('--drift', (Math.random() * 20 - 10) + 'px');
         layer.appendChild(el);
