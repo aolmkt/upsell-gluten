@@ -1,0 +1,667 @@
+<!DOCTYPE html>
+<html lang="es-MX">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Adiós Gluten · Maria Aguero</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+<template id="__bundler_thumbnail" data-bg-color="#008069">
+  <svg viewBox="0 0 1200 800" xmlns="http://www.w3.org/2000/svg">
+    <rect width="1200" height="800" fill="#008069"/>
+    <!-- silueta -->
+    <rect x="280" y="220" rx="36" ry="36" width="640" height="180" fill="#ffffff" opacity="0.95"/>
+    <rect x="320" y="270" width="380" height="22" rx="11" fill="#cfd8dc"/>
+    <rect x="320" y="312" width="540" height="22" rx="11" fill="#cfd8dc"/>
+    <rect x="320" y="354" width="300" height="22" rx="11" fill="#cfd8dc"/>
+    <!-- puntos -->
+    <rect x="280" y="440" rx="36" ry="36" width="240" height="92" fill="#ffffff" opacity="0.95"/>
+    <circle cx="340" cy="486" r="12" fill="#667781"/>
+    <circle cx="400" cy="486" r="12" fill="#667781" opacity="0.7"/>
+    <circle cx="460" cy="486" r="12" fill="#667781" opacity="0.4"/>
+  </svg>
+</template>
+<style>
+  :root {
+    --wa-green: #00A884;
+    --wa-green-dark: #008069;
+    --wa-green-darker: #005c4b;
+    --wa-bg: #EFEAE2;
+    --wa-bubble-in: #ffffff;
+    --wa-bubble-out: #D9FDD3;
+    --wa-text: #111B21;
+    --wa-text-soft: #3b4a54;
+    --wa-text-mute: #667781;
+    --wa-time: #667781;
+    --wa-read: #53BDEB;
+    --wa-link: #027EB5;
+    --soft-warn: #c98a2c;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; -webkit-font-smoothing: antialiased; }
+  html, body {
+    background: #d9d2c5;
+    color: var(--wa-text);
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  }
+  body {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+  }
+
+  .page {
+    width: 100%;
+    max-width: 440px;
+    min-height: 100vh;
+    background-color: var(--wa-bg);
+    background-image: url("https://minioback.lavishcreative.com/typebot/public/workspaces/cm4oe1xs10000c353fx12er63/typebots/cm6z2ws9u000br1thfd47p8m1/background?v=1739198632301");
+    background-repeat: repeat;
+    background-size: 360px auto;
+    position: relative;
+    overflow: hidden;
+  }
+  @media (min-width: 768px) {
+    .page {
+      box-shadow: 0 30px 80px rgba(0,0,0,0.3);
+      margin: 24px 0;
+      min-height: calc(100vh - 48px);
+    }
+  }
+
+  /* Aviso superior (no usado en esta pagina) */
+  .notice {
+    background: #2a3942;
+    color: #e9edef;
+    padding: 8px 16px;
+    text-align: center;
+    font-size: 12.5px;
+    font-weight: 500;
+    letter-spacing: -0.005em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+    line-height: 1.25;
+  }
+  .notice b { font-weight: 700; }
+
+  /* Header WhatsApp */
+  .wa-header {
+    background: var(--wa-green-dark);
+    color: white;
+    padding: 6px 12px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .wa-back {
+    width: 22px;
+    color: white;
+    flex-shrink: 0;
+    opacity: 0.9;
+  }
+  .wa-avatar {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    background: #d97757;
+    flex-shrink: 0;
+    position: relative;
+    overflow: hidden;
+  }
+  .wa-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  .wa-name-wrap { flex: 1; min-width: 0; }
+  .wa-name {
+    font-size: 16px;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    color: white;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    line-height: 1.15;
+  }
+  .wa-verify {
+    width: 14px; height: 14px;
+    background: #25D366;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    flex-shrink: 0;
+  }
+  .wa-verify svg { width: 9px; height: 9px; fill: white; }
+  .wa-status {
+    font-size: 12px;
+    color: rgba(255,255,255,0.85);
+    font-weight: 400;
+    margin-top: 1px;
+  }
+  .wa-actions {
+    display: flex;
+    gap: 14px;
+    color: white;
+    align-items: center;
+  }
+  .wa-actions svg { width: 20px; height: 20px; opacity: 0.95; }
+
+  /* Area de chat */
+  .chat {
+    padding: 6px 10px 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .date-pill {
+    align-self: center;
+    background: rgba(225, 245, 254, 0.9);
+    color: var(--wa-text-soft);
+    font-size: 11.5px;
+    font-weight: 500;
+    padding: 3px 11px;
+    border-radius: 6px;
+    margin: 2px 0 6px;
+    box-shadow: 0 1px 1px rgba(0,0,0,0.08);
+  }
+
+  /* Burbuja, base */
+  .bubble {
+    max-width: 86%;
+    padding: 7px 9px 6px 10px;
+    border-radius: 8px;
+    box-shadow: 0 1px 1px rgba(0,0,0,0.08);
+    position: relative;
+    font-size: 14.8px;
+    line-height: 1.38;
+    color: var(--wa-text);
+    word-wrap: break-word;
+  }
+  .bubble-in {
+    background: var(--wa-bubble-in);
+    align-self: flex-start;
+    border-top-left-radius: 0;
+  }
+  .bubble-in::before {
+    content: '';
+    position: absolute;
+    top: 0; left: -8px;
+    width: 8px; height: 13px;
+    background: var(--wa-bubble-in);
+    clip-path: polygon(100% 0, 0 0, 100% 100%);
+  }
+  .bubble-grouped { border-top-left-radius: 8px; }
+  .bubble-grouped::before { display: none; }
+
+  .bubble-time {
+    font-size: 11px;
+    color: var(--wa-time);
+    float: right;
+    margin: 6px 0 -2px 8px;
+    display: inline-flex;
+    align-items: center;
+    gap: 3px;
+  }
+  .bubble-time svg { width: 14px; height: 12px; fill: var(--wa-read); }
+  .bubble b { font-weight: 700; }
+
+  /* Lista dentro de burbuja (no usada en esta pagina) */
+  .bubble-list {
+    list-style: none;
+    padding: 0;
+    margin: 6px 0 2px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+  .bubble-list li {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14.2px;
+    color: var(--wa-text);
+  }
+  .bubble-list li .chk {
+    flex-shrink: 0;
+    width: 16px; height: 16px;
+    border-radius: 50%;
+    background: #25D366;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .bubble-list li .chk svg { width: 9px; height: 9px; fill: white; }
+
+  /* Burbuja de foto */
+  .photo-bubble {
+    padding: 4px;
+    max-width: 64%;
+  }
+  .photo-bubble::before { display: none; }
+  .photo-wrap {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    border-radius: 6px;
+    overflow: hidden;
+    background: #1a0f08;
+  }
+  .photo-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  /* Fondo de reserva si la imagen no carga */
+  .photo-wrap::before {
+    content: '';
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(circle at 30% 25%, #f5dba0 0%, transparent 38%),
+      radial-gradient(circle at 70% 65%, #e89a55 0%, transparent 45%),
+      radial-gradient(circle at 50% 50%, #c97435 0%, #6b3a1f 60%, #2a1408 100%);
+    z-index: 0;
+  }
+  .photo-wrap img { position: relative; z-index: 1; }
+  .photo-meta {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    margin-top: 4px;
+    padding: 0 4px 2px;
+    font-size: 11px;
+    color: var(--wa-time);
+    gap: 3px;
+  }
+  .photo-meta svg { width: 14px; height: 12px; fill: var(--wa-read); }
+
+  /* Indicador de escritura */
+  .typing-bubble {
+    align-self: flex-start;
+    background: var(--wa-bubble-in);
+    padding: 11px 14px 9px;
+    border-radius: 8px;
+    border-top-left-radius: 0;
+    box-shadow: 0 1px 1px rgba(0,0,0,0.08);
+    display: flex;
+    gap: 4px;
+    align-items: center;
+    margin: 4px 0;
+    position: relative;
+  }
+  .typing-bubble::before {
+    content: '';
+    position: absolute;
+    top: 0; left: -8px;
+    width: 8px; height: 13px;
+    background: var(--wa-bubble-in);
+    clip-path: polygon(100% 0, 0 0, 100% 100%);
+  }
+  .typing-dot {
+    width: 7px; height: 7px;
+    border-radius: 50%;
+    background: var(--wa-text-mute);
+    opacity: 0.4;
+    animation: typing 1.2s ease-in-out infinite;
+  }
+  .typing-dot:nth-child(2) { animation-delay: 0.2s; }
+  .typing-dot:nth-child(3) { animation-delay: 0.4s; }
+  @keyframes typing {
+    0%, 60%, 100% { opacity: 0.3; transform: translateY(0); }
+    30% { opacity: 1; transform: translateY(-3px); }
+  }
+
+  /* Burbuja del widget */
+  .widget-bubble {
+    padding: 0;
+    overflow: hidden;
+    align-self: stretch;
+    max-width: none;
+    width: calc(100% + 4px);
+    /* Sin margen negativo */
+    margin: 4px -7px 0;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.1);
+  }
+  .widget-bubble::before { display: none; }
+  .widget-eyebrow {
+    background: transparent;
+    color: var(--wa-green-dark);
+    font-size: 11.5px;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    padding: 10px 12px 4px;
+    text-align: center;
+  }
+  #hotmart-sales-funnel {
+    background: white;
+    min-height: 200px;
+  }
+  #hotmart-sales-funnel:empty::after {
+    content: 'Aquí carga el widget de Hotmart\A (botón "descargar" + "no gracias")';
+    white-space: pre;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 200px;
+    color: var(--wa-text-mute);
+    font-size: 11.5px;
+    font-weight: 500;
+    text-align: center;
+    line-height: 1.6;
+    padding: 0 20px;
+  }
+
+  /* Enlace de salida (no usado en esta pagina) */
+  .decline-row {
+    align-self: center;
+    margin: 14px 0 8px;
+    text-align: center;
+  }
+  .decline-row a {
+    color: var(--wa-text-mute);
+    font-size: 12.5px;
+    font-weight: 400;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+    text-decoration-color: rgba(102,119,129,0.4);
+    cursor: pointer;
+    letter-spacing: -0.005em;
+  }
+  .decline-row a:hover { color: var(--wa-text-soft); }
+
+  .bottom-spacer { height: 24px; }
+
+  /* Entrada y revelado */
+  .bubble, .typing-bubble, .date-pill {
+    animation: bubbleIn 0.35s ease-out backwards;
+  }
+  @keyframes bubbleIn {
+    from { opacity: 0; transform: translateY(8px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .pre-reveal {
+    opacity: 0;
+    transform: translateY(8px);
+    pointer-events: none;
+    max-height: 0;
+    overflow: hidden;
+    margin: 0 !important;
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+    transition: opacity 0.3s ease, transform 0.3s ease, max-height 0.4s ease;
+  }
+  .typing-bubble.pre-reveal { padding: 0 !important; }
+  .reveal-in {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+    max-height: 3000px;
+  }
+
+  /* Foto de hoja: proporcion carta, sin recorte */
+  .photo-sheet { max-width: 72%; }
+  .photo-wrap-sheet {
+    aspect-ratio: 216 / 279;
+    background: #ffffff;
+  }
+  .photo-wrap-sheet::before { display: none; }
+</style>
+</head>
+<body>
+  <main class="page" data-screen-label="Plan 7">
+
+    <!-- Header WhatsApp -->
+    <header class="wa-header">
+      <svg class="wa-back" viewBox="0 0 24 24" fill="currentColor"><path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/></svg>
+      <div class="wa-avatar">
+        <img src="https://minioback.lavishcreative.com/typebot/public/workspaces/cm4oe1xs10000c353fx12er63/typebots/cm6z2ws9u000br1thfd47p8m1/hostAvatar?v=1739198118696" alt="Maria Aguero" />
+      </div>
+      <div class="wa-name-wrap">
+        <div class="wa-name">
+          Maria Aguero
+          <span class="wa-verify">
+            <svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+          </span>
+        </div>
+        <div class="wa-status" id="wa-status">escribiendo…</div>
+      </div>
+      <div class="wa-actions">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17 10.5V7a1 1 0 0 0-1-1H4a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-3.5l4 4v-11z"/></svg>
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.01 15.38c-1.23 0-2.42-.2-3.53-.56a.977.977 0 0 0-1.01.24l-1.57 1.97c-2.83-1.35-5.48-3.9-6.89-6.83l1.95-1.66c.27-.28.35-.67.24-1.02-.37-1.11-.56-2.3-.56-3.53 0-.54-.45-.99-.99-.99H4.19C3.65 3 3 3.24 3 3.99 3 13.28 10.73 21 20.01 21c.71 0 .99-.63.99-1.18v-3.45c0-.54-.45-.99-.99-.99z"/></svg>
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 8c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm0 2c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0 6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"/></svg>
+      </div>
+    </header>
+
+    <!-- CHAT -->
+    <div class="chat" id="chat">
+
+      <div class="date-pill">Hoy</div>
+
+      <div class="typing-bubble" id="typingFirst" style="animation-delay: 0.3s">
+        <span class="typing-dot"></span>
+        <span class="typing-dot"></span>
+        <span class="typing-dot"></span>
+      </div>
+
+      <div class="bubble bubble-in pre-reveal" data-burst="0" data-delay="1300">
+        Entiendo. Tal vez 21 días te suena a mucho para empezar 💚
+        <span class="bubble-time">
+          <span class="t">12:00</span>
+          <svg viewBox="0 0 16 12"><path d="M15.01 3.316l-.478-.372a.365.365 0 0 0-.51.063L8.666 9.879a.32.32 0 0 1-.484.033l-.358-.325a.319.319 0 0 0-.484.032l-.378.483a.418.418 0 0 0 .036.541l1.32 1.266c.143.14.361.125.484-.033l6.272-8.048a.366.366 0 0 0-.064-.512zm-4.1 0l-.478-.372a.365.365 0 0 0-.51.063L4.566 9.879a.32.32 0 0 1-.484.033L1.891 7.769a.366.366 0 0 0-.515.006l-.423.433a.364.364 0 0 0 .006.514l3.258 3.185c.143.14.361.125.484-.033l6.272-8.048a.366.366 0 0 0-.063-.51z"/></svg>
+        </span>
+      </div>
+
+      <div class="bubble bubble-in pre-reveal" data-burst="1" data-delay="800">
+        Entonces déjame hacerte una última propuesta, más pequeña.
+        <span class="bubble-time">
+          <span class="t">12:00</span>
+          <svg viewBox="0 0 16 12"><path d="M15.01 3.316l-.478-.372a.365.365 0 0 0-.51.063L8.666 9.879a.32.32 0 0 1-.484.033l-.358-.325a.319.319 0 0 0-.484.032l-.378.483a.418.418 0 0 0 .036.541l1.32 1.266c.143.14.361.125.484-.033l6.272-8.048a.366.366 0 0 0-.064-.512zm-4.1 0l-.478-.372a.365.365 0 0 0-.51.063L4.566 9.879a.32.32 0 0 1-.484.033L1.891 7.769a.366.366 0 0 0-.515.006l-.423.433a.364.364 0 0 0 .006.514l3.258 3.185c.143.14.361.125.484-.033l6.272-8.048a.366.366 0 0 0-.063-.51z"/></svg>
+        </span>
+      </div>
+
+      <div class="bubble bubble-in pre-reveal" data-burst="2" data-delay="800">
+        Los primeros 7 días del plan, con la Tabla del Orden incluida.
+        <span class="bubble-time">
+          <span class="t">12:00</span>
+          <svg viewBox="0 0 16 12"><path d="M15.01 3.316l-.478-.372a.365.365 0 0 0-.51.063L8.666 9.879a.32.32 0 0 1-.484.033l-.358-.325a.319.319 0 0 0-.484.032l-.378.483a.418.418 0 0 0 .036.541l1.32 1.266c.143.14.361.125.484-.033l6.272-8.048a.366.366 0 0 0-.064-.512zm-4.1 0l-.478-.372a.365.365 0 0 0-.51.063L4.566 9.879a.32.32 0 0 1-.484.033L1.891 7.769a.366.366 0 0 0-.515.006l-.423.433a.364.364 0 0 0 .006.514l3.258 3.185c.143.14.361.125.484-.033l6.272-8.048a.366.366 0 0 0-.063-.51z"/></svg>
+        </span>
+      </div>
+      <div class="bubble bubble-in photo-bubble photo-sheet pre-reveal" data-burst="2">
+        <div class="photo-wrap photo-wrap-sheet">
+          <img src="./tabla-del-orden.webp" alt="La Tabla del Orden, una hoja para pegar en el refri" width="1000" height="1293" decoding="async" />
+        </div>
+        <div class="photo-meta">
+          <span class="t">12:00</span>
+          <svg viewBox="0 0 16 12"><path d="M15.01 3.316l-.478-.372a.365.365 0 0 0-.51.063L8.666 9.879a.32.32 0 0 1-.484.033l-.358-.325a.319.319 0 0 0-.484.032l-.378.483a.418.418 0 0 0 .036.541l1.32 1.266c.143.14.361.125.484-.033l6.272-8.048a.366.366 0 0 0-.064-.512zm-4.1 0l-.478-.372a.365.365 0 0 0-.51.063L4.566 9.879a.32.32 0 0 1-.484.033L1.891 7.769a.366.366 0 0 0-.515.006l-.423.433a.364.364 0 0 0 .006.514l3.258 3.185c.143.14.361.125.484-.033l6.272-8.048a.366.366 0 0 0-.063-.51z"/></svg>
+        </div>
+      </div>
+
+      <div class="bubble bubble-in pre-reveal" data-burst="3" data-delay="800">
+        Es lo mínimo para que tu cuerpo te muestre la diferencia. La mayoría la siente en la primera semana.
+        <span class="bubble-time">
+          <span class="t">12:00</span>
+          <svg viewBox="0 0 16 12"><path d="M15.01 3.316l-.478-.372a.365.365 0 0 0-.51.063L8.666 9.879a.32.32 0 0 1-.484.033l-.358-.325a.319.319 0 0 0-.484.032l-.378.483a.418.418 0 0 0 .036.541l1.32 1.266c.143.14.361.125.484-.033l6.272-8.048a.366.366 0 0 0-.064-.512zm-4.1 0l-.478-.372a.365.365 0 0 0-.51.063L4.566 9.879a.32.32 0 0 1-.484.033L1.891 7.769a.366.366 0 0 0-.515.006l-.423.433a.364.364 0 0 0 .006.514l3.258 3.185c.143.14.361.125.484-.033l6.272-8.048a.366.366 0 0 0-.063-.51z"/></svg>
+        </span>
+      </div>
+
+      <div class="bubble bubble-in pre-reveal" data-burst="4" data-delay="800">
+        Y cuesta <b>bastante menos</b> que el plan completo.
+        <span class="bubble-time">
+          <span class="t">12:00</span>
+          <svg viewBox="0 0 16 12"><path d="M15.01 3.316l-.478-.372a.365.365 0 0 0-.51.063L8.666 9.879a.32.32 0 0 1-.484.033l-.358-.325a.319.319 0 0 0-.484.032l-.378.483a.418.418 0 0 0 .036.541l1.32 1.266c.143.14.361.125.484-.033l6.272-8.048a.366.366 0 0 0-.064-.512zm-4.1 0l-.478-.372a.365.365 0 0 0-.51.063L4.566 9.879a.32.32 0 0 1-.484.033L1.891 7.769a.366.366 0 0 0-.515.006l-.423.433a.364.364 0 0 0 .006.514l3.258 3.185c.143.14.361.125.484-.033l6.272-8.048a.366.366 0 0 0-.063-.51z"/></svg>
+        </span>
+      </div>
+
+      <div class="bubble bubble-in pre-reveal" data-burst="5" data-delay="800">
+        👇 Un toque y ya es tuyo.
+        <span class="bubble-time">
+          <span class="t">12:00</span>
+          <svg viewBox="0 0 16 12"><path d="M15.01 3.316l-.478-.372a.365.365 0 0 0-.51.063L8.666 9.879a.32.32 0 0 1-.484.033l-.358-.325a.319.319 0 0 0-.484.032l-.378.483a.418.418 0 0 0 .036.541l1.32 1.266c.143.14.361.125.484-.033l6.272-8.048a.366.366 0 0 0-.064-.512zm-4.1 0l-.478-.372a.365.365 0 0 0-.51.063L4.566 9.879a.32.32 0 0 1-.484.033L1.891 7.769a.366.366 0 0 0-.515.006l-.423.433a.364.364 0 0 0 .006.514l3.258 3.185c.143.14.361.125.484-.033l6.272-8.048a.366.366 0 0 0-.063-.51z"/></svg>
+        </span>
+      </div>
+
+      <div class="bubble bubble-in widget-bubble pre-reveal" id="widgetBubble" data-burst="6" data-delay="600">
+        <div id="hotmart-sales-funnel"></div>
+      </div>
+
+      <div class="bubble bubble-in pre-reveal" data-burst="7" data-delay="800">
+        Si esta vez tampoco, no pasa nada. Tu recetario ya va camino a tu correo y ahí nos vemos 💚
+        <span class="bubble-time">
+          <span class="t">12:00</span>
+          <svg viewBox="0 0 16 12"><path d="M15.01 3.316l-.478-.372a.365.365 0 0 0-.51.063L8.666 9.879a.32.32 0 0 1-.484.033l-.358-.325a.319.319 0 0 0-.484.032l-.378.483a.418.418 0 0 0 .036.541l1.32 1.266c.143.14.361.125.484-.033l6.272-8.048a.366.366 0 0 0-.064-.512zm-4.1 0l-.478-.372a.365.365 0 0 0-.51.063L4.566 9.879a.32.32 0 0 1-.484.033L1.891 7.769a.366.366 0 0 0-.515.006l-.423.433a.364.364 0 0 0 .006.514l3.258 3.185c.143.14.361.125.484-.033l6.272-8.048a.366.366 0 0 0-.063-.51z"/></svg>
+        </span>
+      </div>
+
+      <div class="bottom-spacer"></div>
+    </div>
+
+  </main>
+
+  <!-- Revelado por rajadas. El intervalo de cada rajada vive en data-delay. -->
+  <script>
+    (function() {
+      var PASO_DENTRO = 200;   // 150 a 250ms: mensagens do mesmo folego
+      var typingFirst = document.getElementById('typingFirst');
+      var waStatus = document.getElementById('wa-status');
+      var widget = document.getElementById('widgetBubble');
+
+      var grupos = [];
+      Array.prototype.forEach.call(document.querySelectorAll('[data-burst]'), function(el) {
+        var k = parseInt(el.getAttribute('data-burst'), 10);
+        if (!grupos[k]) grupos[k] = [];
+        grupos[k].push(el);
+      });
+      grupos = grupos.filter(function(g) { return !!g; });
+
+      function show(el) {
+        if (!el) return;
+        el.classList.remove('pre-reveal');
+        el.classList.add('reveal-in');
+      }
+      function hide(el) {
+        if (!el) return;
+        el.classList.remove('reveal-in');
+        el.classList.add('pre-reveal');
+      }
+
+      // Sonido: primera burbuja y llegada del widget
+      function playTap() {
+        try {
+          var Ctx = window.AudioContext || window.webkitAudioContext;
+          if (!Ctx) return;
+          var ctx = new Ctx();
+          var now = ctx.currentTime;
+          var osc = ctx.createOscillator();
+          var g = ctx.createGain();
+          osc.type = 'sine';
+          osc.frequency.value = 880;
+          g.gain.setValueAtTime(0, now);
+          g.gain.linearRampToValueAtTime(0.08, now + 0.01);
+          g.gain.exponentialRampToValueAtTime(0.0001, now + 0.18);
+          osc.connect(g); g.connect(ctx.destination);
+          osc.start(now);
+          osc.stop(now + 0.22);
+        } catch(e) {}
+      }
+
+      // Mantiene visible el ultimo mensaje. Se detiene si hay scroll manual arriba.
+      var subioSola = false;
+      window.addEventListener('scroll', function() {
+        var falta = document.documentElement.scrollHeight
+                  - window.pageYOffset - window.innerHeight;
+        subioSola = falta > 140;
+      }, { passive: true });
+
+      function seguir(el) {
+        if (!el || subioSola) return;
+        try {
+          var r = el.getBoundingClientRect();
+          if (r.bottom > window.innerHeight - 8) {
+            window.scrollTo({
+              top: window.pageYOffset + (r.bottom - window.innerHeight) + 24,
+              behavior: 'smooth'
+            });
+          }
+        } catch(e) {}
+      }
+
+      var t = 0;
+      grupos.forEach(function(grupo, i) {
+        var d = parseInt(grupo[0].getAttribute('data-delay'), 10) || 900;
+        t += d;
+        var enT = t;
+        // Estado del header entre rajadas
+        if (i > 0) {
+          setTimeout(function() {
+            if (waStatus) waStatus.textContent = 'escribiendo…';
+          }, enT - Math.min(700, d - 100));
+        }
+        grupo.forEach(function(el, j) {
+          setTimeout(function() {
+            if (i === 0) hide(typingFirst);
+            show(el);
+            if (j === grupo.length - 1) {
+              if (waStatus) waStatus.textContent = 'en línea';
+              seguir(el);
+            }
+            if (i === 0 && j === 0) playTap();
+            if (el === widget) {
+              playTap();
+              setTimeout(function() {
+                try {
+                  var rect = widget.getBoundingClientRect();
+                  window.scrollTo({
+                    top: window.pageYOffset + rect.top - 12,
+                    behavior: 'smooth'
+                  });
+                } catch(e) {}
+              }, 380);
+            }
+          }, enT + j * PASO_DENTRO);
+        });
+        t += (grupo.length - 1) * PASO_DENTRO;
+      });
+
+      // Hora local del dispositivo
+      function nowHHMM() {
+        var d = new Date();
+        return String(d.getHours()).padStart(2, '0') + ':'
+             + String(d.getMinutes()).padStart(2, '0');
+      }
+      var stamp = nowHHMM();
+      document.querySelectorAll('.bubble-time .t, .photo-meta .t').forEach(function(el) {
+        el.textContent = stamp;
+      });
+    })();
+  </script>
+
+  <!-- Hotmart widget -->
+  <script src="https://checkout.hotmart.com/lib/hotmart-checkout-elements.js"></script>
+  <script>
+    if (window.checkoutElements) {
+      try { checkoutElements.init('salesFunnel').mount('#hotmart-sales-funnel'); } catch(e) {}
+    }
+  </script>
+
+  <!-- Tracker (Pixel + CAPI) -->
+  <script src="./tracker.js"></script>
+  <script>
+    window.addEventListener('load', function() {
+      setTimeout(function() {
+        if (window.trackEvent) window.trackEvent('Plan7View', { content_name: 'Plan 7 Dias' });
+      }, 600);
+    });
+  </script>
+</body>
+</html>
