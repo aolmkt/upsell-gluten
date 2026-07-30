@@ -70,8 +70,7 @@
     }
   }
 
-  /* ---------- TOP SOFT NOTICE ----------
-     Amanda: nada de vermelho gritando. Continuação calma. */
+  /* ---------- BARRA SUPERIOR ---------- */
   .notice {
     background: #2a3942;
     color: #e9edef;
@@ -88,7 +87,7 @@
   }
   .notice b { font-weight: 700; }
 
-  /* ---------- WHATSAPP HEADER (idêntico ao upsell — continuidade neural) ---------- */
+  /* ---------- HEADER WHATSAPP ---------- */
   .wa-header {
     background: var(--wa-green-dark);
     color: white;
@@ -214,7 +213,7 @@
   .bubble-time svg { width: 14px; height: 12px; fill: var(--wa-read); }
   .bubble b { font-weight: 700; }
 
-  /* Bullets — soltos como sub-bubble (não na mesma) p/ respiração */
+  /* Lista dentro de burbuja */
   .bubble-list {
     list-style: none;
     padding: 0;
@@ -241,7 +240,7 @@
   }
   .bubble-list li .chk svg { width: 9px; height: 9px; fill: white; }
 
-  /* Photo bubble — uma foto só, grande, "tipo Maria mandou agora" */
+  /* Burbuja de foto */
   .photo-bubble {
     padding: 4px;
     max-width: 64%;
@@ -261,7 +260,7 @@
     object-fit: cover;
     display: block;
   }
-  /* Fallback gradient if image fails — comida quente, dourada */
+  /* Fondo de reserva si la imagen no carga */
   .photo-wrap::before {
     content: '';
     position: absolute; inset: 0;
@@ -320,14 +319,14 @@
     30% { opacity: 1; transform: translateY(-3px); }
   }
 
-  /* Hotmart widget bubble — wide, sem cauda, máxima respiração */
+  /* Burbuja del widget */
   .widget-bubble {
     padding: 0;
     overflow: hidden;
     align-self: stretch;
     max-width: none;
     width: calc(100% + 4px);
-    /* Sem margin negativa: estava cobrindo a bubble "Activa tu acceso" */
+    /* Sin margen negativo */
     margin: 4px -7px 0;
     background: white;
     border-radius: 10px;
@@ -363,7 +362,7 @@
     padding: 0 20px;
   }
 
-  /* "No gracias" — link discreto, sem peso visual, como saída orgânica */
+  /* Enlace de salida */
   .decline-row {
     align-self: center;
     margin: 14px 0 8px;
@@ -414,10 +413,9 @@
 <body>
   <main class="page" data-screen-label="01 Downsell WA concesión">
 
-    <!-- Amanda: removido o top notice. Header WA sozinho já dá contexto.
-         Quanto menos "estrutura de funil" parecer, melhor. -->
+    <!-- Sin barra superior -->
 
-    <!-- WA HEADER (idêntico ao upsell) -->
+    <!-- HEADER WHATSAPP -->
     <header class="wa-header">
       <svg class="wa-back" viewBox="0 0 24 24" fill="currentColor"><path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/></svg>
       <div class="wa-avatar">
@@ -444,14 +442,14 @@
 
       <div class="date-pill">Hoy</div>
 
-      <!-- 1) Typing inicial (entra primeiro, depois some) — sensação de mensagem chegando agora -->
+      <!-- 1) Indicador de escritura inicial -->
       <div class="typing-bubble" id="typingFirst" style="animation-delay: 0.3s">
         <span class="typing-dot"></span>
         <span class="typing-dot"></span>
         <span class="typing-dot"></span>
       </div>
 
-      <!-- 2) Primeira bubble — concessão, low pressure -->
+      <!-- 2) Primera burbuja -->
       <div class="bubble bubble-in pre-reveal" id="b1">
         Ok… si no quieres empezar con la <b>comunidad completa</b> 👇
         <span class="bubble-time">
@@ -460,8 +458,7 @@
         </span>
       </div>
 
-      <!-- 3) Foto — brownie (comfort food, "no creo que pueda comer esto")
-           Amanda: comida caseira > junk food. Brownie ativa indulgência caseira. -->
+      <!-- 3) Foto -->
       <div class="bubble bubble-in photo-bubble pre-reveal" id="b2">
         <div class="photo-wrap">
           <img src="https://images.unsplash.com/photo-1606313564200-e75d5e30476c?auto=format&fit=crop&w=700&q=80" alt="" onerror="this.style.display='none'" />
@@ -472,7 +469,7 @@
         </div>
       </div>
 
-      <!-- 4) Bubble — mais conversational, menos "copy" -->
+      <!-- 4) Burbuja -->
       <div class="bubble bubble-in pre-reveal" id="b3">
         Entonces empieza con una <b>versión más simple</b>.
         <ul class="bubble-list">
@@ -485,7 +482,7 @@
         </span>
       </div>
 
-      <!-- 5) Bubble final — continuidade com upsell ("activa tu acceso") -->
+      <!-- 5) Burbuja final -->
       <div class="bubble bubble-in pre-reveal" id="b4">
         👇 Activa tu acceso
         <span class="bubble-time">
@@ -499,14 +496,14 @@
         <div id="hotmart-sales-funnel"></div>
       </div>
 
-      <!-- Saída discreta removida — o widget da Hotmart já traz "no gracias" nativo. -->
+      <!-- Sin enlace de salida propio -->
 
       <div class="bottom-spacer"></div>
     </div>
 
   </main>
 
-  <!-- Reveal sequence — Maria escribiendo → cada mensagem aparece em cadência natural -->
+  <!-- Secuencia de revelado -->
   <script>
     (function() {
       var typingFirst = document.getElementById('typingFirst');
@@ -528,7 +525,7 @@
         el.classList.add('pre-reveal');
       }
 
-      // Tiny "tap" sound — softer than upsell ding
+      // Sonido de toque
       function playTap() {
         try {
           var Ctx = window.AudioContext || window.webkitAudioContext;
@@ -548,7 +545,7 @@
         } catch(e) {}
       }
 
-      // Cadência: 1.4s typing → b1 → 0.9s typing → b2 (foto) → 0.7s → b3 → 0.5s → b4 → widget → decline
+      // Cadencia
       var t = 0;
       function step(delay, fn) {
         t += delay;
@@ -579,8 +576,8 @@
       });
       step(500, function() {
         show(widget);
-        // Amanda: o cérebro precisa ver o verde IMEDIATAMENTE.
-         // Scroll suave até o widget para garantir que o botão entre na dobra.
+        // Scroll hasta el widget
+         // Scroll suave hasta el widget
         setTimeout(function() {
           try {
             var rect = widget.getBoundingClientRect();
@@ -605,7 +602,7 @@
       }
       updateTimestamps();
 
-      // "No gracias" — closes the flow. In production this would route home or close window.
+      // Enlace de salida
     })();
   </script>
 
