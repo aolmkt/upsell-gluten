@@ -189,11 +189,14 @@
   .card a:hover { text-decoration: underline; }
   .card b { font-weight: 700; color: var(--wa-text); }
 
-  .btn {
+  /* `.card a` acima tem especificidade maior que `.btn` sozinho e roubava a cor
+     do texto: o rotulo saia azul de link em cima do verde. Selector casado com
+     o markup real para ganhar sem !important. Coberto por qa_gracias.py. */
+  .card a.btn {
     display: block;
     margin-top: 13px;
     background: var(--wa-green-dark);
-    color: white;
+    color: #ffffff;
     text-align: center;
     padding: 13px 16px;
     border-radius: 10px;
