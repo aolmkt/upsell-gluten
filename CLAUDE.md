@@ -16,6 +16,22 @@ As três clonam a estrutura de `downsell.html`. O preço não aparece em nenhuma
 bolha: quem exibe é o widget da Hotmart, e a âncora ("de $47 por $27") é
 configuração da oferta no checkout.
 
+Página de obrigado, criada em 03/08/2026:
+- `gracias.html`: fim do funil, para onde caem todas as saídas das etapas
+
+Ela **não** clona a estrutura de chat das outras seis, de propósito. A venda já
+aconteceu: encenar uma conversa numa página de recibo seria mentira sem função.
+Mantém a identidade (Inter, paleta, coluna de 440px, header com a Maria) e o
+resto é conteúdo estático, sem animação, sem bolha e sem widget.
+
+O texto foi portado da página antiga em `lavishcreative.com/gluten/gracias/`,
+que era boa. Duas mudanças: saiu a promessa com prazo ("en pocos días notarás
+la diferencia"), e o texto ficou genérico de propósito ("todo lo que elegiste",
+"tu material"). Genérico é o que faz ela servir para qualquer combinação de
+compras e para os upsells que ainda vão existir, sem precisar editar nada.
+
+O e-mail de suporte é `ayuda@confiamosenti.com`, o mesmo da página antiga.
+
 ## ⚠️ Comentários no HTML: só rótulo estrutural
 
 Comentário destes arquivos vai publicado e qualquer pessoa lê com View Source.
@@ -91,6 +107,13 @@ Per-page event name:
 - `plan-a.html` → `PlanAView` / `Plan A 21 Dias`
 - `plan-b.html` → `PlanBView` / `Plan B 21 Dias`
 - `plan7.html` → `Plan7View` / `Plan 7 Dias`
+- `gracias.html` → `GraciasView` / `Gracias`
+
+`gracias.html` dispara **só o evento de view**, nunca `Purchase`. A compra da
+Hotmart é confirmada server-side, e a URL da página de obrigado é pública: um
+`Purchase` disparado pelo browser contaria venda para qualquer um que abrisse o
+link, e contaria de novo a cada refresh. Se um dia precisar de `Purchase`, ele
+vem do postback da Hotmart, não daqui.
 
 Ao clonar uma página para criar outra, o erro clássico é o evento vir junto do
 arquivo de origem. O QA confere um a um, pelo POST que sai na rede e não pela

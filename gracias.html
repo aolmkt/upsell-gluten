@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="es-MX">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="robots" content="noindex, nofollow" />
+<title>¡Gracias! · Adiós Gluten</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --wa-green: #00A884;
+    --wa-green-dark: #008069;
+    --wa-green-darker: #005c4b;
+    --wa-bg: #EFEAE2;
+    --wa-bubble-in: #ffffff;
+    --wa-text: #111B21;
+    --wa-text-soft: #3b4a54;
+    --wa-text-mute: #667781;
+    --wa-link: #027EB5;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; -webkit-font-smoothing: antialiased; }
+  html, body {
+    background: #d9d2c5;
+    color: var(--wa-text);
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  }
+  body {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+  }
+
+  .page {
+    width: 100%;
+    max-width: 440px;
+    min-height: 100vh;
+    background-color: var(--wa-bg);
+    background-image: url("https://minioback.lavishcreative.com/typebot/public/workspaces/cm4oe1xs10000c353fx12er63/typebots/cm6z2ws9u000br1thfd47p8m1/background?v=1739198632301");
+    background-repeat: repeat;
+    background-size: 360px auto;
+    position: relative;
+  }
+  @media (min-width: 768px) {
+    .page {
+      box-shadow: 0 30px 80px rgba(0,0,0,0.3);
+      margin: 24px 0;
+      min-height: calc(100vh - 48px);
+    }
+  }
+
+  /* ---------- HEADER WHATSAPP ---------- */
+  .wa-header {
+    background: var(--wa-green-dark);
+    color: white;
+    padding: 10px 14px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .wa-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: #d97757;
+    flex-shrink: 0;
+    overflow: hidden;
+  }
+  .wa-avatar img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .wa-name-wrap { flex: 1; min-width: 0; }
+  .wa-name {
+    font-size: 16px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    line-height: 1.2;
+  }
+  .wa-verify {
+    width: 15px;
+    height: 15px;
+    background: var(--wa-green);
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+  .wa-verify svg { width: 10px; height: 10px; fill: white; }
+  .wa-status {
+    font-size: 12.5px;
+    opacity: 0.85;
+    line-height: 1.3;
+    margin-top: 1px;
+  }
+
+  /* ---------- CONTENIDO ---------- */
+  .wrap { padding: 20px 16px 40px; }
+
+  .hero {
+    background: var(--wa-bubble-in);
+    border-radius: 14px;
+    padding: 26px 20px;
+    text-align: center;
+    box-shadow: 0 1px 1px rgba(11,20,26,0.13);
+  }
+  .hero .mark {
+    width: 56px;
+    height: 56px;
+    margin: 0 auto 14px;
+    border-radius: 50%;
+    background: var(--wa-green);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .hero .mark svg { width: 30px; height: 30px; fill: white; }
+  .hero h1 {
+    font-size: 21px;
+    font-weight: 800;
+    line-height: 1.25;
+    letter-spacing: -0.01em;
+  }
+  .hero p {
+    margin-top: 9px;
+    font-size: 15px;
+    line-height: 1.5;
+    color: var(--wa-text-soft);
+  }
+
+  .section-title {
+    margin: 26px 4px 12px;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--wa-text-mute);
+  }
+
+  .card {
+    background: var(--wa-bubble-in);
+    border-radius: 14px;
+    padding: 18px 18px 18px 16px;
+    margin-bottom: 12px;
+    box-shadow: 0 1px 1px rgba(11,20,26,0.13);
+    display: flex;
+    gap: 13px;
+  }
+  .card .num {
+    width: 27px;
+    height: 27px;
+    flex-shrink: 0;
+    border-radius: 50%;
+    background: #d9fdd3;
+    color: var(--wa-green-darker);
+    font-size: 14px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 1px;
+  }
+  .card .body { flex: 1; min-width: 0; }
+  .card h2 {
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 1.3;
+    margin-bottom: 6px;
+  }
+  .card p {
+    font-size: 14.5px;
+    line-height: 1.55;
+    color: var(--wa-text-soft);
+  }
+  .card p + p { margin-top: 8px; }
+  .card ul {
+    margin-top: 8px;
+    padding-left: 18px;
+  }
+  .card li {
+    font-size: 14.5px;
+    line-height: 1.55;
+    color: var(--wa-text-soft);
+    margin-bottom: 5px;
+  }
+  .card a { color: var(--wa-link); text-decoration: none; font-weight: 600; }
+  .card a:hover { text-decoration: underline; }
+  .card b { font-weight: 700; color: var(--wa-text); }
+
+  .btn {
+    display: block;
+    margin-top: 13px;
+    background: var(--wa-green-dark);
+    color: white;
+    text-align: center;
+    padding: 13px 16px;
+    border-radius: 10px;
+    font-size: 15px;
+    font-weight: 700;
+    text-decoration: none;
+    letter-spacing: 0.01em;
+  }
+
+  .nota {
+    margin-top: 10px;
+    font-size: 13px;
+    line-height: 1.5;
+    color: var(--wa-text-mute);
+  }
+
+  .firma {
+    background: #d9fdd3;
+    border-radius: 14px;
+    padding: 20px 18px;
+    margin-top: 26px;
+    box-shadow: 0 1px 1px rgba(11,20,26,0.13);
+  }
+  .firma p {
+    font-size: 15px;
+    line-height: 1.55;
+    color: var(--wa-text);
+  }
+  .firma p + p { margin-top: 10px; }
+  .firma .autora {
+    margin-top: 14px;
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--wa-green-darker);
+  }
+
+  .pie {
+    margin-top: 22px;
+    text-align: center;
+    font-size: 12px;
+    line-height: 1.5;
+    color: var(--wa-text-mute);
+  }
+</style>
+</head>
+<body>
+
+  <div class="page">
+
+    <!-- HEADER WHATSAPP -->
+    <header class="wa-header">
+      <div class="wa-avatar">
+        <img src="https://minioback.lavishcreative.com/typebot/public/workspaces/cm4oe1xs10000c353fx12er63/typebots/cm6z2ws9u000br1thfd47p8m1/hostAvatar?v=1739198118696" alt="Maria Aguero" />
+      </div>
+      <div class="wa-name-wrap">
+        <div class="wa-name">
+          Maria Aguero
+          <span class="wa-verify">
+            <svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+          </span>
+        </div>
+        <div class="wa-status">Adiós Gluten</div>
+      </div>
+    </header>
+
+    <!-- CONTENIDO -->
+    <div class="wrap">
+
+      <div class="hero">
+        <div class="mark">
+          <svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+        </div>
+        <h1>¡Listo! Tu compra fue aprobada 🎉</h1>
+        <p>Todo lo que elegiste ya quedó registrado a tu nombre. Ahora solo falta abrirlo.</p>
+      </div>
+
+      <div class="section-title">Qué hacer ahora</div>
+
+      <!-- Paso 1 -->
+      <div class="card">
+        <div class="num">1</div>
+        <div class="body">
+          <h2>Revisa tu correo 📩</h2>
+          <p>En los próximos minutos llega un email con el asunto <b>"¡Compra Aprobada!"</b>. Ahí está el enlace para entrar y descargar todo.</p>
+          <p>Si no lo ves en tu bandeja de entrada, busca en <b>SPAM</b> o en <b>Promociones</b>. A veces se esconde ahí.</p>
+        </div>
+      </div>
+
+      <!-- Paso 2 -->
+      <div class="card">
+        <div class="num">2</div>
+        <div class="body">
+          <h2>Entra cuando quieras 🔑</h2>
+          <p>Tu acceso no vence. Para volver en cualquier momento:</p>
+          <ul>
+            <li>Entra a Hotmart con <b>el mismo correo</b> que usaste al comprar.</li>
+            <li>Si no recuerdas la contraseña, toca "Olvidé mi contraseña".</li>
+            <li>Adentro, abre <b>"Mis compras"</b> y descarga lo que quieras, las veces que quieras.</li>
+          </ul>
+          <a class="btn" href="https://consumer.hotmart.com/purchases" target="_blank" rel="noopener">ABRIR MIS COMPRAS</a>
+        </div>
+      </div>
+
+      <!-- Paso 3 -->
+      <div class="card">
+        <div class="num">3</div>
+        <div class="body">
+          <h2>¿Algo no llegó? 💬</h2>
+          <p>Si ya buscaste en SPAM y en Hotmart y sigues sin encontrar el acceso, escríbenos a <a href="mailto:ayuda@confiamosenti.com">ayuda@confiamosenti.com</a>.</p>
+          <p class="nota">Pon en el asunto <b>"No recibí mi acceso"</b> e incluye el correo con el que compraste. Así te respondemos más rápido.</p>
+        </div>
+      </div>
+
+      <div class="firma">
+        <p>Gracias por confiar en mí 🥰</p>
+        <p>Preparé cada receta pensando en cocinas de verdad, con lo que se consigue en el mercado de la esquina y sin complicaciones.</p>
+        <p>¿Qué tal empezar hoy mismo? Abre tu material, elige una receta y cuéntame cuál fue la primera. Me encanta saber por dónde empiezan.</p>
+        <div class="autora">Maria Aguero</div>
+      </div>
+
+      <div class="pie">
+        Adiós Gluten · Recetas sin gluten y sin azúcar
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Tracker (Pixel + CAPI) -->
+  <script src="./tracker.js"></script>
+  <script>
+    window.addEventListener('load', function() {
+      setTimeout(function() {
+        if (window.trackEvent) window.trackEvent('GraciasView', { content_name: 'Gracias' });
+      }, 600);
+    });
+  </script>
+</body>
+</html>
