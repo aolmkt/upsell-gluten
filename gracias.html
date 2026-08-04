@@ -2,7 +2,7 @@
 <html lang="es-MX">
 <head>
 <meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
 <meta name="robots" content="noindex, nofollow" />
 <title>¡Gracias! · Adiós Gluten</title>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -37,17 +37,25 @@
     width: 100%;
     max-width: 440px;
     min-height: 100vh;
+    min-height: 100dvh;
     background-color: var(--wa-bg);
-    background-image: url("https://minioback.lavishcreative.com/typebot/public/workspaces/cm4oe1xs10000c353fx12er63/typebots/cm6z2ws9u000br1thfd47p8m1/background?v=1739198632301");
+    background-image: url("./chat-bg.webp");
     background-repeat: repeat;
     background-size: 360px auto;
     position: relative;
   }
+  /* Esta pagina usa altura minima con header sticky, no columna flex de altura
+     fija como las otras. No hay una lista larga que necesite su propio scroll
+     interno aqui, asi que no aplica el mismo layout. Si se cambia a columna
+     flex con altura fija, revisar que ningun hijo directo del contenedor con
+     scroll quede sin "flex-shrink: 0": sin eso, un hijo con "overflow: hidden"
+     puede colapsar a 0px de alto y desaparecer de la pantalla. */
   @media (min-width: 768px) {
     .page {
       box-shadow: 0 30px 80px rgba(0,0,0,0.3);
       margin: 24px 0;
       min-height: calc(100vh - 48px);
+      min-height: calc(100dvh - 48px);
     }
   }
 
@@ -56,9 +64,13 @@
     background: var(--wa-green-dark);
     color: white;
     padding: 10px 14px;
+    padding-top: calc(10px + env(safe-area-inset-top));
     display: flex;
     align-items: center;
     gap: 10px;
+    position: sticky;
+    top: 0;
+    z-index: 5;
   }
   .wa-avatar {
     width: 40px;
@@ -97,7 +109,10 @@
   }
 
   /* ---------- CONTENIDO ---------- */
-  .wrap { padding: 20px 16px 40px; }
+  .wrap {
+    padding: 20px 16px 40px;
+    padding-bottom: calc(40px + env(safe-area-inset-bottom));
+  }
 
   .hero {
     background: var(--wa-bubble-in);
@@ -249,7 +264,7 @@
     <!-- HEADER WHATSAPP -->
     <header class="wa-header">
       <div class="wa-avatar">
-        <img src="https://minioback.lavishcreative.com/typebot/public/workspaces/cm4oe1xs10000c353fx12er63/typebots/cm6z2ws9u000br1thfd47p8m1/hostAvatar?v=1739198118696" alt="Maria Aguero" />
+        <img src="./avatar-maria.png" alt="Maria Aguero" />
       </div>
       <div class="wa-name-wrap">
         <div class="wa-name">

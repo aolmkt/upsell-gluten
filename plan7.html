@@ -2,7 +2,7 @@
 <html lang="es-MX">
 <head>
 <meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
 <title>Adiós Gluten · Maria Aguero</title>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -54,9 +54,12 @@
   .page {
     width: 100%;
     max-width: 440px;
-    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    height: 100dvh;
     background-color: var(--wa-bg);
-    background-image: url("https://minioback.lavishcreative.com/typebot/public/workspaces/cm4oe1xs10000c353fx12er63/typebots/cm6z2ws9u000br1thfd47p8m1/background?v=1739198632301");
+    background-image: url("./chat-bg.webp");
     background-repeat: repeat;
     background-size: 360px auto;
     position: relative;
@@ -66,7 +69,8 @@
     .page {
       box-shadow: 0 30px 80px rgba(0,0,0,0.3);
       margin: 24px 0;
-      min-height: calc(100vh - 48px);
+      height: calc(100vh - 48px);
+      height: calc(100dvh - 48px);
     }
   }
 
@@ -92,9 +96,11 @@
     background: var(--wa-green-dark);
     color: white;
     padding: 6px 12px;
+    padding-top: calc(6px + env(safe-area-inset-top));
     display: flex;
     align-items: center;
     gap: 10px;
+    flex-shrink: 0;
   }
   .wa-back {
     width: 22px;
@@ -156,10 +162,16 @@
   /* ---------- CHAT AREA ---------- */
   .chat {
     padding: 6px 10px 10px;
+    padding-bottom: calc(10px + env(safe-area-inset-bottom));
     display: flex;
     flex-direction: column;
     gap: 2px;
+    flex: 1;
+    min-height: 0;
+    overflow-y: auto;
+    overscroll-behavior: contain;
   }
+  .chat > * { flex-shrink: 0; }
 
   .date-pill {
     align-self: center;
@@ -421,7 +433,7 @@
     <header class="wa-header">
       <svg class="wa-back" viewBox="0 0 24 24" fill="currentColor"><path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/></svg>
       <div class="wa-avatar">
-        <img src="https://minioback.lavishcreative.com/typebot/public/workspaces/cm4oe1xs10000c353fx12er63/typebots/cm6z2ws9u000br1thfd47p8m1/hostAvatar?v=1739198118696" alt="Maria Aguero" />
+        <img src="./avatar-maria.png" alt="Maria Aguero" />
       </div>
       <div class="wa-name-wrap">
         <div class="wa-name">
@@ -531,6 +543,10 @@
       var typingFirst = document.getElementById('typingFirst');
       var waStatus = document.getElementById('wa-status');
       var widget = document.getElementById('widgetBubble');
+      var chat = document.getElementById('chat');
+      var header = document.querySelector('.wa-header');
+      var reduceMotion = window.matchMedia
+        && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
       var grupos = [];
       Array.prototype.forEach.call(document.querySelectorAll('[data-burst]'), function(el) {
@@ -573,20 +589,21 @@
 
       // Mantiene visible el ultimo mensaje. Se detiene si hay scroll manual arriba.
       var subioSola = false;
-      window.addEventListener('scroll', function() {
-        var falta = document.documentElement.scrollHeight
-                  - window.pageYOffset - window.innerHeight;
-        subioSola = falta > 140;
+      chat.addEventListener('scroll', function() {
+        var falta = chat.scrollHeight - chat.scrollTop - chat.clientHeight;
+        var limiar = 140 + (header ? header.offsetHeight : 0);
+        subioSola = falta > limiar;
       }, { passive: true });
 
       function seguir(el) {
         if (!el || subioSola) return;
         try {
           var r = el.getBoundingClientRect();
-          if (r.bottom > window.innerHeight - 8) {
-            window.scrollTo({
-              top: window.pageYOffset + (r.bottom - window.innerHeight) + 24,
-              behavior: 'smooth'
+          var chatRect = chat.getBoundingClientRect();
+          if (r.bottom > chatRect.bottom - 8) {
+            chat.scrollTo({
+              top: chat.scrollTop + (r.bottom - chatRect.bottom) + 24,
+              behavior: reduceMotion ? 'auto' : 'smooth'
             });
           }
         } catch(e) {}
@@ -617,9 +634,10 @@
               setTimeout(function() {
                 try {
                   var rect = widget.getBoundingClientRect();
-                  window.scrollTo({
-                    top: window.pageYOffset + rect.top - 12,
-                    behavior: 'smooth'
+                  var chatRect = chat.getBoundingClientRect();
+                  chat.scrollTo({
+                    top: chat.scrollTop + rect.top - chatRect.top - 12,
+                    behavior: reduceMotion ? 'auto' : 'smooth'
                   });
                 } catch(e) {}
               }, 380);

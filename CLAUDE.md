@@ -10,7 +10,7 @@ Páginas do Plan 21 Días (upsell 2), criadas em 30/07/2026, sem arquivo de desi
 - `plan-a.html`: Plan 21 Días $27, ramo de quem aceitou alguma etapa da assinatura
 - `plan-b.html`: Plan 21 Días $27, ramo de quem recusou tudo
 - `plan7.html`: 7 Días $17, downsell que sai só de `plan-a.html`
-- `tabla-del-orden.webp`: imagem da folha La Tabla del Orden, usada nas três acima
+- `platos-en-orden.webp`: foto dos três pratos em ordem, ilustra a bolha "es en qué orden lo comes", usada nas três acima
 
 As três clonam a estrutura de `downsell.html`. O preço não aparece em nenhuma
 bolha: quem exibe é o widget da Hotmart, e a âncora ("de $47 por $27") é
@@ -31,6 +31,14 @@ la diferencia"), e o texto ficou genérico de propósito ("todo lo que elegiste"
 compras e para os upsells que ainda vão existir, sem precisar editar nada.
 
 O e-mail de suporte é `ayuda@confiamosenti.com`, o mesmo da página antiga.
+
+Página do upsell 3, criada em 03/08/2026:
+- `panza-calma.html`: alcançável a partir das três saídas de compra do funil
+
+Clona a estrutura de chat de `plan-a.html`. É gerada por
+`build/gen_panza_calma.py`, script irmão de `gen_paginas.py`: a fonte de copy
+fica fora do repo e o `<head>`, o header, o script de revelado e o loader do
+widget são recortados de `plan-a.html`, não reescritos.
 
 ## ⚠️ Comentários no HTML: só rótulo estrutural
 
@@ -108,6 +116,10 @@ Per-page event name:
 - `plan-b.html` → `PlanBView` / `Plan B 21 Dias`
 - `plan7.html` → `Plan7View` / `Plan 7 Dias`
 - `gracias.html` → `GraciasView` / `Gracias`
+- `panza-calma.html` → `Up3View` / `Panza Calma 14 Dias` (no load)
+- `panza-calma.html` → `Up3CTAView` / `Panza Calma 14 Dias` (quando la burbuja
+  del widget se revela, no en el load; separa "no llegó al botón" de "llegó y
+  no compró")
 
 `gracias.html` dispara **só o evento de view**, nunca `Purchase`. A compra da
 Hotmart é confirmada server-side, e a URL da página de obrigado é pública: um
